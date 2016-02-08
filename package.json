@@ -1,21 +1,21 @@
 {
-  "name": "news-paper",
+  "name": "news-paper-generator",
   "version": "1.0.0",
-  "description": "ニュースペーパー",
-  "main": "index.js",
+  "description": "ニュースペーパージェネレーター",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ya-s-u/NewsPaper.git"
+    "url": "git+https://github.com/ya-s-u/NewsPaperGenerator.git"
   },
   "author": "ya_s_u",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ya-s-u/NewsPaper/issues"
+    "url": "https://github.com/ya-s-u/NewsPaperGenerator/issues"
   },
-  "homepage": "https://github.com/ya-s-u/NewsPaper#readme",
+  "homepage": "https://github.com/ya-s-u/NewsPaperGenerator#readme",
   "readme": "README.md",
   "dependencies": {
     "restify": "4.0.3",
