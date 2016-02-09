@@ -59,15 +59,17 @@ $(function(){
     var body = $("#article_body").val();
     var image = $("#confirmation_image").attr("src");
 
-    $this = $('.editor .articles li').eq(selectedIndex);
+    insertArticle(selectedIndex, title, body, image);
+    closeModal();
+  });
+
+  // indexの記事にtitle, body, imageの記事を挿入
+  function insertArticle(index, title, body, image) {
+    $this = $('.editor .articles li').eq(index);
     $this.attr("title", title);
     $this.attr("body", body);
     $this.attr("image", image);
-
-    console.log( $this.css("width") );
-    console.log( $this.css("height"));
-
-    $(".editor .articles li").eq(selectedIndex).html("<h2>"+title+"</h2><br><p>"+body+"</p>");
+    $this.html("<h2>"+title+"</h2><br><p>"+body+"</p>");
 
     // $(".editor .articles li").eq(selectedIndex).VerticalTextBox( {
     //   position: {
@@ -88,8 +90,7 @@ $(function(){
     //     size: 18
     //   }
     // });
-    closeModal();
-  });
+  }
 
   // 記事を追加を押したら一旦フォームに
   $("#search_article").click(function(){
@@ -115,10 +116,51 @@ $(function(){
       stopLoading();
     });
   });
+  
 
-  $('#sortable').sortable();
-  $('#sortable').disableSelection();
+  var draggingIndex;
+  // 記事をドラッグ開始
+  $(".editor .articles li").draggable( {
+    opacity: 0.5,
+    cursor: "pointer",
+    zIndex: 100,
+    start: function(event, ui) {
+      draggingIndex = $('.editor .articles li').index(this);
+    },
+    stop: function(event, ui) {
+      var left = ui.offset.left + $("#articles").offset().left;
+      var top = ui.offset.top + $("#articles").offset().top - 30;
+      $(".editor .articles li").each(function(i, elem) {
+        var l = $(elem).offset().left;
+        var t = $(elem).offset().top;
+        var w = $(elem).width();
+        var h = $(elem).height();
+        //console.log(l, t, w, h, i);
+        // 当たり判定
+        if( (l < left) && (left < l+w) && (t < top) && (top < t+h) ) {
+          console.log(i, "と同じ位置");
+          swapArtcile(draggingIndex, i);
+        }
+      });
+    }
+  });
 
+  // index1とindex2の記事を入れ替える
+  function swapArtcile(index1, index2) {
+    $index1 = $(".editor .articles li").eq(index1);
+    $index2 = $(".editor .articles li").eq(index2);
+
+    var title1 = $index1.attr("title") || "";
+    var body1 = $index1.attr("body") || "";
+    var image1 = $index1.attr("image") || "";
+
+    var title2 = $index2.attr("title") || "";
+    var body2 = $index2.attr("body") || "";
+    var image2 = $index2.attr("image") || "";
+
+    insertArticle(index1, title2, body2, image2);
+    insertArticle(index2, title1, body1, image1);
+  }
 
   // オーバーレイクリックでモーダル非表示
   $(".overlay").click(function(){
