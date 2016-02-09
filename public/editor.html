@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style1.css">
-
 </head>
+
 <body>
   <div class="paper editor">
     <div class="header">
@@ -29,12 +29,48 @@
     </div>
     
     <div class="modal" id="modal">
-      <div class="preview">
-
+      <div class="modal-header">
+        <h3>記事を作成・編集</h3>
+        <div id="update" class="update">
+          <img src="./img/edit.png">更新
+        </div>
       </div>
+
+      <div class="preview">
+        <form role="form">
+
+          <div class="input-group">
+            <span class="input-group-addon" id="title">タイトル</span>
+            <input type="text" class="form-control" id="article_title" placeholder="ネパール前首相、コイララ氏死去" aria-describedby="title">
+          </div>
+
+          <br>
+
+          <div class="input-group">
+            <span class="input-group-addon" id="body">　内容　</span>
+            <textarea class="form-control" rows="7" id="article_body" aria-describedby="body"></textarea>
+          </div>
+
+          <br>
+
+          <div class="input-group">
+            <span class="input-group-addon" id="image">イメージ</span>
+            <input type="file" class="form-control" id="article_image" aria-describedby="image" accept="image/*">
+          </div>
+
+          <div class="confirmation">
+            <img src="" id="confirmation_image" style="display: none;">
+          </div>
+        </form>
+      </div>
+
       <div class="edit">
-        <input class="urlInput" type="url" name="url" size="40" placeholder="http://www.sankei.com/">
-        <button class="btn btn-default" id="addArticle">記事を追加</button>
+        <div class="input-group">
+          <input type="url" class="form-control" placeholder="http://www.sankei.com/" id="article_url" name="url">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="search_article">検索</button>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -46,6 +82,7 @@
   <div class="loading"><img src="./img/loading.gif"></div>
   <script src="js/jquery-1.11.3.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
+  <script src="js/jquery.VericalTextBox.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

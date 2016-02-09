@@ -58,35 +58,29 @@ body {
   height: 0px;
   -webkit-writing-mode: vertical-rl;
 }
-
 .articles li {
   overflow: hidden;
   position: absolute;
   border: 1px solid #ddd;
 }
-
 .articles li:hover {
   background: #ccc;
   cursor: move;
 }
-
 .articles li h2 {
   line-height: 1em;
   font-size: 20px;
   margin: 10px;
 }
-
 .articles li h2.reverse {
   display: inline;
   padding: 3px;
   background: black;
   color: white;
 }
-
 .articles li img {
   width: 260px;
 }
-
 .articles li p {
   font-size: 15px;
   word-break: break-word;
@@ -94,45 +88,38 @@ body {
   float: left;
   border-bottom: 1px solid #ccc;
 }
-
 .articles li p:last-child {
   border-bottom: none;
 }
-
 .articles li:nth-child(1) p { height: calc(100% / 4 - 1px) }
 .articles li:nth-child(2) p { height: calc(100% / 5 - 1px) }
 .articles li:nth-child(3) p { height: calc(100% / 3 - 1px) }
 .articles li:nth-child(4) p { height: calc(100% / 1 - 1px) }
 .articles li:nth-child(5) p { height: calc(100% / 1 - 1px) }
-
 .articles li:nth-child(1) {
   left: calc(100% / 7 * 3)!important;
   top: calc(100% / 8 * 1)!important;
   width: calc(100% / 7 * 4);
   height: calc(100% / 8 * 4);
 }
-
 .articles li:nth-child(2) {
   left: calc(100% / 7 * 0)!important;
   top: calc(100% / 8 * 1)!important;
   width: calc(100% / 7 * 3);
   height: calc(100% / 8 * 5);
 }
-
 .articles li:nth-child(3) {
   left: calc(100% / 7 * 3)!important;
   top: calc(100% / 8 * 5)!important;
   width: calc(100% / 7 * 4);
   height: calc(100% / 8 * 3);
 }
-
 .articles li:nth-child(4) {
   left: calc(100% / 7 * 0)!important;
   top: calc(100% / 8 * 6)!important;
   width: calc(100% / 7 * 3);
   height: calc(100% / 8 * 1);
 }
-
 .articles li:nth-child(5) {
   left: calc(100% / 7 * 0)!important;
   top: calc(100% / 8 * 7)!important;
@@ -150,26 +137,62 @@ body {
 /* Editor Modal */
 .modal {
   display: none;
-  width: 500px;
-  height: auto;
-  max-height: 500px;
+  width: 800px;
+  height: 80%;
   position: fixed;
-  top: 100px;
+  top: 30px;
   left: 50%;
-  margin-left: -250px;
+  margin-left: -400px;
   background: #fff;
   z-index: 1000;
   padding: 30px;
+  padding-top: 10px;
+  border-radius: 5px;
 }
 
+/* model header */
+.modal .modal-header {
+  margin: 10px;
+  padding: 0px;
+  text-align: center;
+}
+.modal .modal-header .update {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 5px;
+}
+.modal .modal-header .update:hover {
+  background: rgba(240, 240, 240, .8);
+}
+
+/* modal preview */
 .modal .preview {
   height: 400px;
   overflow: scroll;
+  position: relative;
+}
+.modal .preview .confirmation {
+  text-align: center;
+  width: 100%;
+  height: auto;
+}
+.modal .preview .confirmation img{
+  width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
 }
 
+/* modal edit */
 .modal .edit {
   position: absolute;
   bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 80%;
 }
 
 
