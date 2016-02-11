@@ -59,12 +59,12 @@ $(function(){
     var body = $("#article_body").val();
     var image = $("#confirmation_image").attr("src");
 
-    insertArticle(selectedIndex, title, body, image);
+    insertArticle(selectedIndex, title, body, image, selected_font, false);
     closeModal();
   });
 
   // indexの記事にtitle, body, imageの記事を挿入
-  function insertArticle(index, title, body, image) {
+  function insertArticle(index, title, body, image, font, reverse) {
     $this = $('.editor .articles li').eq(index);
     $this.attr("title", title);
     $this.attr("body", body);
@@ -83,7 +83,7 @@ $(function(){
     //   title: {
     //     text: title,
     //     size: 24,
-    //     reverse: false
+    //     reverse: reverse
     //   },
     //   content: {
     //     text: body,
@@ -158,8 +158,8 @@ $(function(){
     var body2 = $index2.attr("body") || "";
     var image2 = $index2.attr("image") || "";
 
-    insertArticle(index1, title2, body2, image2);
-    insertArticle(index2, title1, body1, image1);
+    insertArticle(index1, title2, body2, image2, "", false);
+    insertArticle(index2, title1, body1, image1, "", false);
   }
 
   // htmlとしてアウトプット
@@ -178,6 +178,17 @@ $(function(){
       }
     })
     return false;
+  });
+
+  // フォント一覧表示
+  var selecetd_font = "sans-serif";
+  $(".dropdown").click(function() {
+    $(".dropdown-menu").toggle();
+  });
+  $(".dropdown-menu li").click(function() {
+    $(".dropdown-menu li.selected").removeClass("selected");
+    $(this).addClass("selected");
+    selected_font = $(this).find("span").text();
   });
 
   // オーバーレイクリックでモーダル非表示

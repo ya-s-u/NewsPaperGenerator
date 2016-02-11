@@ -200,6 +200,17 @@ body {
   height: auto;
   border: 2px solid #ccc;
 }
+.modal .preview .dropdown-menu li {
+  padding: 3px;
+  cursor: pointer;
+}
+.modal .preview .dropdown-menu li:hover {
+  opacity: .8;
+  background: #eee;
+}
+.modal .preview .dropdown-menu li.selected {
+  background: #eee;
+}
 
 /* modal edit */
 .modal .edit {
@@ -233,4 +244,8 @@ body {
   margin-left: -25px;
   opacity: .8;
   z-index: 1100;
+}
+
+.input-group-btn>.btn:active, .input-group-btn>.btn:focus, .input-group-btn>.btn:hover {
+    z-index: 10000;
 }
