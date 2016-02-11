@@ -169,6 +169,16 @@ $(function(){
     return false;
   });
 
+  // 画像としてアウトプット
+  $("#image_output").click(function() {
+    html2canvas(document.body, {
+      onrendered: function(canvas) {
+        $("#ss").attr('src', canvas.toDataURL("image/png") );
+        $("#ss").show();
+      }
+    })
+    return false;
+  });
 
   // オーバーレイクリックでモーダル非表示
   $(".overlay").click(function(){

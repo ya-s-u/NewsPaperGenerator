@@ -143,6 +143,12 @@ body {
   margin-top: 20px;
   text-align: center;
 }
+.footer #ss{
+  width: 100%;
+  height: auto;
+  border: 1px solid #000;
+  display: none;
+}
 
 /* Editor Modal */
 .modal {
