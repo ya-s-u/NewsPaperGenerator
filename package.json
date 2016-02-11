@@ -23,6 +23,9 @@
     "image-resolver": "^0.5.4",
     "jconv": "^0.1.5",
     "jschardet": "^1.3.0",
+    "ejs": "2.4.1",
+    "phantom": "0.9.0",
+    "node-phantom": "0.2.5",
     "jsdom": "^6.5.1",
     "request": "^2.64.0"
   }
