@@ -17,6 +17,7 @@
       title: {
         text: "",
         size: 22,
+        font: "Meiryo",
         reverse: false
       },
       content: {
@@ -45,12 +46,18 @@
         "position": "absolute",
         "top": "0",
         "margin": "0",
+        "font-family": setting.title.font,
         "font-size": setting.title.size,
+        "overflow": "hidden"
       },
       html: setting.title.text
     });
     var offset = setting.rows[0].width - setting.title.size
     setting.position.align == "left" ? title.css({"left": offset+"px"}) : title.css({"right": "0"})
+    if(setting.title.reverse == true) {
+      title.css("color", "white");
+      title.css("background", "#000");
+    }
     Box.append(title)
 
     // 段落
@@ -81,6 +88,7 @@
         },
         html: setting.content.text.substr(pos, count.total)
       });
+
       top += val.height
       pos += count.total
       var offset = setting.title.size+"px"

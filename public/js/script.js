@@ -28,6 +28,7 @@ $(function(){
     var title = $this.attr("title") || "";
     var body = $this.attr("body") || "";
     var image = $this.attr("image") || "";
+    var reverse = $this.attr("reverse") || "false";
     $("#article_title").val(title);
     $("#article_body").val(body);
     $("#confirmation_image").attr("src", image);
@@ -35,6 +36,11 @@ $(function(){
       $("#confirmation_image").hide();
     } else {
       $("#confirmation_image").show();
+    }
+    if(reverse == "true") {
+      $("#reverse").prop("checked", true);
+    } else {
+      $("#reverse").prop("checked", false);
     }
   });
 
@@ -58,8 +64,13 @@ $(function(){
     var title = $("#article_title").val();
     var body = $("#article_body").val();
     var image = $("#confirmation_image").attr("src");
-
-    insertArticle(selectedIndex, title, body, image, selected_font, false);
+    var selected_font = $(".selected span").text();
+    if( $("#reverse").prop('checked') ) {
+      var reverse = true;
+    } else {
+      var reverse = false;
+    }
+    insertArticle(selectedIndex, title, body, image, selected_font, reverse);
     closeModal();
   });
 
@@ -69,27 +80,54 @@ $(function(){
     $this.attr("title", title);
     $this.attr("body", body);
     $this.attr("image", image);
-    $this.html("<h2>"+title+"</h2><br><p>"+body+"</p>");
+    $this.attr("font", font);
+    $this.attr("reverse", reverse);
+    if(title == "" && body == "") return;
+    $this.html("");
+    //$this.html("<h2>"+title+"</h2><br><p>"+body+"</p>");
 
-    // $(".editor .articles li").eq(selectedIndex).VerticalTextBox( {
-    //   position: {
-    //     x: $this.position().left,
-    //     y: $this.position().top,
-    //     align: "right" 
-    //   },
-    //   rows: [
-    //     {width: $this.css("width"), height: $this.css("height")}
-    //   ],
-    //   title: {
-    //     text: title,
-    //     size: 24,
-    //     reverse: reverse
-    //   },
-    //   content: {
-    //     text: body,
-    //     size: 18
-    //   }
-    // });
+    var width = $this.width();
+    var height = $this.height();
+    if( height < 180 ) {
+      var rows = [{width: width, height: height}];
+    } else if (height < 360) {
+      var rows = [
+        {width: width, height: height / 2},
+        {width: width, height: height / 2}
+      ];
+    } else if (height < 540) {
+      var rows = [
+        {width: width, height: height / 3},
+        {width: width, height: height / 3},
+        {width: width, height: height / 3}
+      ];
+    } else {
+      var rows = [
+        {width: width, height: height / 4},
+        {width: width, height: height / 4},
+        {width: width, height: height / 4},
+        {width: width, height: height / 4}
+      ];
+    }
+
+    $(".editor .articles li").eq(selectedIndex).VerticalTextBox( {
+      position: {
+        x: $this.position().left,
+        y: $this.position().top,
+        align: "right" 
+      },
+      rows: rows,
+      title: {
+        text: title,
+        size: 24,
+        font: font,
+        reverse: reverse
+      },
+      content: {
+        text: body,
+        size: 15
+      }
+    });
   }
 
   // 記事を追加を押したら一旦フォームに
@@ -135,7 +173,6 @@ $(function(){
         var t = $(elem).offset().top;
         var w = $(elem).width();
         var h = $(elem).height();
-        //console.log(l, t, w, h, i);
         // 当たり判定
         if( (l < left) && (left < l+w) && (t < top) && (top < t+h) ) {
           console.log(i, "と同じ位置");
@@ -153,13 +190,20 @@ $(function(){
     var title1 = $index1.attr("title") || "";
     var body1 = $index1.attr("body") || "";
     var image1 = $index1.attr("image") || "";
+    var font1 = $index1.attr("font") || "";
+    var reverse1 = $index1.attr("reverse") || false;
 
     var title2 = $index2.attr("title") || "";
     var body2 = $index2.attr("body") || "";
     var image2 = $index2.attr("image") || "";
+    var font2 = $index2.attr("font") || "";
+    var reverse2 = $index2.attr("reverse") || false;
 
-    insertArticle(index1, title2, body2, image2, "", false);
-    insertArticle(index2, title1, body1, image1, "", false);
+    $index1.removeAttr("style");
+    $index2.removeAttr("style");
+
+    insertArticle(index1, title2, body2, image2, font2, reverse2);
+    insertArticle(index2, title1, body1, image1, font1, reverse1);
   }
 
   // htmlとしてアウトプット
@@ -179,6 +223,7 @@ $(function(){
     // })
 
     var url = "http://localhost:8080/public/editor.html";
+    var url = "http://localhost:8080/output_as_html" + "?html=" + $(".wrapper").html();
     var top = $("#articles").offset().top;
     var left = $("#articles").offset().left;
     var width = $("#articles").width();
@@ -209,6 +254,15 @@ $(function(){
     $(".dropdown-menu li.selected").removeClass("selected");
     $(this).addClass("selected");
     selected_font = $(this).find("span").text();
+  });
+
+  // リバースかどうか
+  $("#reverse").click(function() {
+    if($(this).val() == "true") {
+      $(this).val("false");
+    } else {
+      $(this).val("true");
+    }
   });
 
   // オーバーレイクリックでモーダル非表示

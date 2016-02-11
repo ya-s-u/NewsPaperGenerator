@@ -30,8 +30,8 @@ module.exports = function(server) {
     console.log(url, top, left, width, height);
 
     webCapB64(url, top, left, width, height, function(b64) {
-        res.send(b64);
-        return next();
+      res.send(b64);
+      return next();
     });
   })
 }
