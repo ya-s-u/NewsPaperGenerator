@@ -8,13 +8,13 @@ $(function(){
     if( $(this).hasClass("by_16_9") ) {
       $(this).removeClass("by_16_9");
       $(this).addClass("by_4_3");
-      $(this).text("16 : 9");
+      $(this).text("16 : 9 に変更");
       $(".articles_area").removeClass("by_16_9");
       $(".articles_area").addClass("by_4_3");
     } else {
       $(this).removeClass("by_4_3");
       $(this).addClass("by_16_9");
-      $(this).text("4 : 3");
+      $(this).text("4 : 3 に変更");
       $(".articles_area").removeClass("by_4_3");
       $(".articles_area").addClass("by_16_9");
     }
@@ -161,6 +161,14 @@ $(function(){
     insertArticle(index1, title2, body2, image2);
     insertArticle(index2, title1, body1, image1);
   }
+
+  // htmlとしてアウトプット
+  $("#html_output").click(function() {
+    var url = $(this).attr("href") + "?html=" + $(".wrapper").html();
+    window.open(url, "_blank");
+    return false;
+  });
+
 
   // オーバーレイクリックでモーダル非表示
   $(".overlay").click(function(){
