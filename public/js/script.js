@@ -28,7 +28,7 @@ $(function(){
     var title = $this.attr("title") || "";
     var body = $this.attr("body") || "";
     var image = $this.attr("image") || "";
-    var reverse = $this.attr("reverse") || "false";
+    var reverse = $this.prop("reverse") || "false";
     $("#article_title").val(title);
     $("#article_body").val(body);
     $("#confirmation_image").attr("src", image);
@@ -163,20 +163,8 @@ $(function(){
     helper: "clone",
     start: function(event, ui) {
       draggingIndex = $('.editor .articles li').index(this);
-      // originTop = event.offsetY + $(".editor .articles li").eq(draggingIndex).offset().top;
-      // originLeft = event.offsetX + $(".editor .articles li").eq(draggingIndex).offset().left;
-      // console.log( originTop, originLeft );
     },
     stop: function(event, ui) {
-      // //console.log( ui.offset.left, ui.offset.top );
-      // //console.log( ui.position.left, ui.position.top );
-      // //console.log( event.offsetY, event.offsetX );
-      // var left = ui.offset.left + $("#articles").offset().left + 30;
-      // var top = ui.offset.top + $("#articles").offset().top - 30;
-
-      // var top = originTop + ui.position.top;
-      // var left = originLeft + ui.position.left;
-
       var top = event.pageY;
       var left = event.pageX;
       $(".editor .articles li").each(function(i, elem) {
@@ -216,30 +204,14 @@ $(function(){
     var font2 = $index2.attr("font") || "";
     var reverse2 = $index2.prop("reverse") || false;
 
-    $index1.empty();
-    $index2.empty();
-
-    console.log("attr取得後");
-
-    console.log(index1, title1, body1);
-    console.log(index2, title2, body2);
-
     insertArticle(index1, title2, body2, image2, font2, reverse2);
-
-    console.log("インサート後");
-    console.log(index1, title1, body1);
-    console.log(index2, title2, body2);
     insertArticle(index2, title1, body1, image1, font1, reverse1);
-      
-
-    console.log("インサート後");
-    console.log(index1, title1, body1);
-    console.log(index2, title2, body2);
   }
 
   // htmlとしてアウトプット
   $("#html_output").click(function() {
-    var url = $(this).attr("href") + "?html=" + $(".wrapper").html();
+    var html = $(".wrapper").html();
+    var url = $(this).attr("href") + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
     window.open(url, "_blank");
     return false;
   });

@@ -56,7 +56,7 @@
     setting.position.align == "left" ? title.css({"left": offset+"px"}) : title.css({"right": "0"})
     if(setting.title.reverse == true) {
       title.css("color", "white");
-      title.css("background", "#000");
+      title.css("background", "rgb(54,57,78)");
     }
     Box.append(title)
 

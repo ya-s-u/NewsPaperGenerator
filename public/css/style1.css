@@ -30,7 +30,7 @@ body {
 .articles_area.by_4_3::before {
   content: "";
   display: block;
-  padding-top: 75%;
+  padding-top: 133%;
 }
 .articles_area .articles {
   position: absolute;
