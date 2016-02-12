@@ -218,32 +218,35 @@ $(function(){
 
   // 画像としてアウトプット
   $("#image_output").click(function() {
-    // html2canvas(document.body, {
-    //   onrendered: function(canvas) {
-    //     $("#ss").attr('src', canvas.toDataURL("image/png") );
-    //     $("#ss").show();
-    //   }
-    // })
+    html2canvas(document.body, {
+      onrendered: function(canvas) {
+        $("#ss").attr('src', canvas.toDataURL("image/png") );
+        $("#ss").show();
+      }
+    })
 
-    var url = "http://localhost:8080/public/editor.html";
-    var url = "http://localhost:8080/output_as_html" + "?html=" + $(".wrapper").html();
-    var top = $("#articles").offset().top;
-    var left = $("#articles").offset().left;
-    var width = $("#articles").width();
-    var height = $("#articles").height();
-    $.ajax({
-      url: "/capture",
-      data: {url: url,top: top, left: left, width: width, height: height},
-      type: "get"
-    })
-    .done(function(data) {
-      $("#ss").attr("src", "data:image/png;base64," + data);
-      $("#ss").show();
-    })
-    .fail(function(data) {
-      alert("failed");
-    });
-    stopLoading();
+    // var url = "http://localhost:8080/public/editor.html";
+    // var html = $(".wrapper").html();
+    // var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
+    
+
+    // var top = $("#articles").offset().top;
+    // var left = $("#articles").offset().left;
+    // var width = $("#articles").width();
+    // var height = $("#articles").height();
+    // $.ajax({
+    //   url: "/capture",
+    //   data: {url: url,top: top, left: left, width: width, height: height},
+    //   type: "get"
+    // })
+    // .done(function(data) {
+    //   $("#ss").attr("src", "data:image/png;base64," + data);
+    //   $("#ss").show();
+    // })
+    // .fail(function(data) {
+    //   alert("failed");
+    // });
+    // stopLoading();
 
     return false;
   });
