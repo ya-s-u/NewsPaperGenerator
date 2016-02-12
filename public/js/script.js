@@ -77,15 +77,13 @@ $(function(){
   // indexの記事にtitle, body, imageの記事を挿入
   function insertArticle(index, title, body, image, font, reverse) {
     $this = $('.editor .articles li').eq(index);
+    $this.empty();
+    $this.removeAttr("style");
     $this.attr("title", title);
     $this.attr("body", body);
     $this.attr("image", image);
     $this.attr("font", font);
-    $this.attr("reverse", reverse);
-    if(title == "" && body == "") return;
-    $this.html("");
-    //$this.html("<h2>"+title+"</h2><br><p>"+body+"</p>");
-
+    $this.prop("reverse", reverse);
     var width = $this.width();
     var height = $this.height();
     if( height < 180 ) {
@@ -110,7 +108,7 @@ $(function(){
       ];
     }
 
-    $(".editor .articles li").eq(selectedIndex).VerticalTextBox( {
+    $this.VerticalTextBox( {
       position: {
         x: $this.position().left,
         y: $this.position().top,
@@ -157,17 +155,30 @@ $(function(){
   
 
   var draggingIndex;
+  var originTop, originLeft;
   // 記事をドラッグ開始
   $(".editor .articles li").draggable( {
     opacity: 0.5,
     cursor: "pointer",
-    zIndex: 100,
+    helper: "clone",
     start: function(event, ui) {
       draggingIndex = $('.editor .articles li').index(this);
+      // originTop = event.offsetY + $(".editor .articles li").eq(draggingIndex).offset().top;
+      // originLeft = event.offsetX + $(".editor .articles li").eq(draggingIndex).offset().left;
+      // console.log( originTop, originLeft );
     },
     stop: function(event, ui) {
-      var left = ui.offset.left + $("#articles").offset().left;
-      var top = ui.offset.top + $("#articles").offset().top - 30;
+      // //console.log( ui.offset.left, ui.offset.top );
+      // //console.log( ui.position.left, ui.position.top );
+      // //console.log( event.offsetY, event.offsetX );
+      // var left = ui.offset.left + $("#articles").offset().left + 30;
+      // var top = ui.offset.top + $("#articles").offset().top - 30;
+
+      // var top = originTop + ui.position.top;
+      // var left = originLeft + ui.position.left;
+
+      var top = event.pageY;
+      var left = event.pageX;
       $(".editor .articles li").each(function(i, elem) {
         var l = $(elem).offset().left;
         var t = $(elem).offset().top;
@@ -175,8 +186,11 @@ $(function(){
         var h = $(elem).height();
         // 当たり判定
         if( (l < left) && (left < l+w) && (t < top) && (top < t+h) ) {
-          console.log(i, "と同じ位置");
-          swapArtcile(draggingIndex, i);
+          console.log(draggingIndex, i);
+          if(i != draggingIndex) {
+            swapArtcile(draggingIndex, i);
+          }
+          return;
         }
       });
     }
@@ -187,23 +201,40 @@ $(function(){
     $index1 = $(".editor .articles li").eq(index1);
     $index2 = $(".editor .articles li").eq(index2);
 
+    console.log( $index1.html() );
+    console.log( $index2.html() );
+
     var title1 = $index1.attr("title") || "";
     var body1 = $index1.attr("body") || "";
     var image1 = $index1.attr("image") || "";
     var font1 = $index1.attr("font") || "";
-    var reverse1 = $index1.attr("reverse") || false;
+    var reverse1 = $index1.prop("reverse") || false;
 
     var title2 = $index2.attr("title") || "";
     var body2 = $index2.attr("body") || "";
     var image2 = $index2.attr("image") || "";
     var font2 = $index2.attr("font") || "";
-    var reverse2 = $index2.attr("reverse") || false;
+    var reverse2 = $index2.prop("reverse") || false;
 
-    $index1.removeAttr("style");
-    $index2.removeAttr("style");
+    $index1.empty();
+    $index2.empty();
+
+    console.log("attr取得後");
+
+    console.log(index1, title1, body1);
+    console.log(index2, title2, body2);
 
     insertArticle(index1, title2, body2, image2, font2, reverse2);
+
+    console.log("インサート後");
+    console.log(index1, title1, body1);
+    console.log(index2, title2, body2);
     insertArticle(index2, title1, body1, image1, font1, reverse1);
+      
+
+    console.log("インサート後");
+    console.log(index1, title1, body1);
+    console.log(index2, title2, body2);
   }
 
   // htmlとしてアウトプット

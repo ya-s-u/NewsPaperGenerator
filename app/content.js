@@ -41,7 +41,6 @@ function webCapB64(url, top, left, width, height, cb){
   phantom.create(function(ph){
     ph.createPage(function(page){
       page.set('clipRect', {top: top, left: left, width: width, height: height});
-      //page.viewportSize = { width: 480, height: 800 };
       page.open(url,function(status){
         console.log("opened", status);
         page.renderBase64('PNG', function(b64){
