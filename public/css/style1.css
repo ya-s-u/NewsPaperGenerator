@@ -90,6 +90,7 @@ body {
   width: 100%;
   float: left;
   border-bottom: 1px solid #ccc;
+  line-height: 19px;
 }
 .articles li p:last-child {
   border-bottom: none;

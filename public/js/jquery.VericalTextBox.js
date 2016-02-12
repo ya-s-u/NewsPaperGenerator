@@ -62,12 +62,13 @@
 
     // 段落
     var top = 0, pos = 0, width = setting.rows[0].width;
+    var now = 0;
     $.each(setting.rows, function(i, val) {
       var count = {
-        horizon: Math.floor((val.width == width ? val.width - setting.title.size : val.width)/setting.content.size/1.2-1),
+        horizon: Math.floor((val.width == width ? val.width - setting.title.size : val.width)/setting.content.size/1.3 + 1),
         vertical: Math.floor(val.height/setting.content.size)
       }
-      count.total = count.horizon * count.vertical
+      count.total = count.horizon * count.vertical+1;
 
       var prohibit = 0;
       for(var j=0; j<count.horizon; j++) {
@@ -75,6 +76,13 @@
         if($.inArray(char, setting.rules) > -1) prohibit++
       }
       count.total -= prohibit
+
+      now += val.width == width ? val.width - setting.title.size : val.width;
+      if(now > width+10000) {
+        var html = setting.content.text.substr(pos, count.total).replace(/。.*/g, "。" );
+      } else {
+        var html = setting.content.text.substr(pos, count.total)
+      }
 
       var row = $("<p></p>", {
         width: val.width == width ? val.width - setting.title.size : val.width,
@@ -85,8 +93,9 @@
           "top": top+"px",
           "font-size": setting.content.size+"px",
           "border-bottom": "1px solid #aaa",
+          "line-height": "19px"
         },
-        html: setting.content.text.substr(pos, count.total)
+        html: html
       });
 
       top += val.height
