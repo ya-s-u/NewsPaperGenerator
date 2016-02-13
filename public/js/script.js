@@ -18,7 +18,25 @@ $(function(){
       $(".articles_area").removeClass("by_4_3");
       $(".articles_area").addClass("by_16_9");
     }
+    reload();
   });
+
+  // 再挿入
+  function reload() {
+    $(".editor .articles li").each(function(i, elem) {
+      var title = $("#article_title").val();
+      var body = $("#article_body").val();
+      var image = $("#confirmation_image").attr("src");
+      var selected_font = $(".selected span").text();
+
+      if( $("#reverse").prop('checked') ) {
+        var reverse = true;
+      } else {
+        var reverse = false;
+      }
+      insertArticle(selectedIndex, title, body, image, selected_font, reverse);
+    }); 
+  }
 
   // 記事をクリックしたらモダール表示
   $(".editor .articles li").click(function(){
@@ -37,7 +55,7 @@ $(function(){
     } else {
       $("#confirmation_image").show();
     }
-    if(reverse == "true") {
+    if(reverse == true) {
       $("#reverse").prop("checked", true);
     } else {
       $("#reverse").prop("checked", false);
