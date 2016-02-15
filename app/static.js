@@ -30,8 +30,6 @@ module.exports = function(server) {
     //var style = fs.readFileSync( join(__dirname, "../public/css/style1.css"), "utf8");
     output = ejs.render(output, {
         html: html,
-        //normalize: normalize,
-        //style: style,
         preview: preview,
         height: height,
         width: width

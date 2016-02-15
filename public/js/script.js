@@ -1,6 +1,7 @@
 $(function(){
   var modal = $("#modal");
   var overlay = $(".overlay");
+  var lastLayouts = 1;
   var selectedIndex = 0;
 
   // 4:3と16:9を変更
@@ -18,6 +19,20 @@ $(function(){
       $(".articles_area").removeClass("by_4_3");
       $(".articles_area").addClass("by_16_9");
     }
+    reload();
+  });
+
+  // レイアウト変更
+  $(".layouts").click(function() {
+    var id = $(this).attr("data-id");
+    var lastLayoutsClass = "layout" + lastLayouts;
+    var nowLayoutsClass = "layout" + id;
+    console.log(lastLayoutsClass, nowLayoutsClass);
+    $(".articles").removeClass(lastLayoutsClass);
+    $(".articles").addClass(nowLayoutsClass);
+    lastLayouts = id;
+    $("." + lastLayoutsClass).removeClass("selected");
+    $(this).addClass("selected");
     reload();
   });
 
@@ -90,29 +105,24 @@ $(function(){
     $this = $('.editor .articles li').eq(index);
     $this.empty();
     $this.removeAttr("style");
+    $this.attr("body", body);
     $this.attr("image", image);
     $this.prop("reverse", reverse);
+    if(title=="" && body=="") return;
     var width = $this.width();
     var height = $this.height();
-    if( height < 180 ) {
+    if( height < 230 ) {
       var rows = [{width: width, height: height}];
-    } else if (height < 360) {
+    } else if (height < 460) {
       var rows = [
         {width: width, height: height / 2},
         {width: width, height: height / 2}
       ];
-    } else if (height < 540) {
+    } else {
       var rows = [
         {width: width, height: height / 3},
         {width: width, height: height / 3},
         {width: width, height: height / 3}
-      ];
-    } else {
-      var rows = [
-        {width: width, height: height / 4},
-        {width: width, height: height / 4},
-        {width: width, height: height / 4},
-        {width: width, height: height / 4}
       ];
     }
 
@@ -140,10 +150,7 @@ $(function(){
   function getDataFromArticle(index) {
     var $this = $('.editor .articles li').eq(index); 
     var title = $this.find("h2").text() || "";
-    var body = "";
-    $this.find("p").each(function(i, elem) {
-      body += $(elem).text() || "";
-    });
+    var body = $this.attr("body") || "";
     var image = $this.attr("image") || "";
     var reverse = $this.prop("reverse") || false;
     var font = $this.find("h2").css("font-family") || "";

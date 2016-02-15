@@ -12,12 +12,11 @@
   <div class="paper editor">
     <div class="header">
       <h1>NewsPagerGene</h1>
-      <button type="button" class="btn btn-default pull-right by_16_9" id="switch_btn">4 : 3 に変更</button>
     </div>
 
     <div class="wrapper">
       <div class="articles_area by_16_9">
-        <ul id="articles" class="articles">
+        <ul id="articles" class="articles layout1">
           <li></li>
           <li></li>
           <li></li>
@@ -29,9 +28,6 @@
     </div>
 
     <div class="footer">
-      <a class="btn btn-default" id="html_output" href="/output_as_html">HTMLで出力する</a>
-      <a class="btn btn-default" id="image_output" href="/output_as_image">画像で出力する</a>
-      <br>
       <img src="" id="ss">
     </div>
     
@@ -101,8 +97,25 @@
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="articleEditor well">
+    <h4 class="text-center">編集</h4>
 
+    <br>
+    <p>比率</p>
+    <button type="button" class="btn btn-default btn-block by_16_9" id="switch_btn">4 : 3 に変更</button>
+
+    <br>
+    <p>レイアウト</p>
+    <img src="./img/1.png" id="layouts" class="layouts layout1 selected" data-id="1">
+    <img src="./img/2.png" id="layouts" class="layouts layout2" data-id="2">
+    <img src="./img/3.png" id="layouts" class="layouts layout3" data-id="3"
+
+    <br>
+    <p>出力</p>
+    <a class="btn btn-default btn-block" id="html_output" href="/output_as_html">HTMLで出力する</a>
+    <a class="btn btn-default btn-block" id="image_output" href="/output_as_image">画像で出力する</a>
 
   </div>
 

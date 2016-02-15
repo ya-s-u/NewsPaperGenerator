@@ -45,7 +45,7 @@ body {
 .articles li {
   overflow: hidden;
   position: absolute;
-  //border: 1px solid #ddd;
+  //border: 1px solid #333;
 }
 .articles li h2 {
   line-height: 1em;
@@ -66,45 +66,125 @@ body {
   word-break: break-word;
   width: 100%;
   float: left;
-  border-bottom: 1px solid #ccc;
+  //border-bottom: 1px solid #ddd;
   margin: 0 0 10px;
   padding: 0;
 }
-.articles li:nth-child(1) {
-  left: calc(100% / 7 * 3)!important;
-  top: calc(100% / 8 * 1)!important;
-  width: calc(100% / 7 * 4);
-  height: calc(100% / 8 * 4);
+/* タイプ１ */
+.articles.layout1 li:nth-child(1) {
+  left: calc(100% / 12 * 0)!important;
+  top: calc(100% / 12 * 0)!important;
+  width: calc(100% / 12 * 12);
+  height: calc(100% / 12 * 4);
 }
-.articles li:nth-child(2) {
-  left: calc(100% / 7 * 0)!important;
-  top: calc(100% / 8 * 1)!important;
-  width: calc(100% / 7 * 3);
-  height: calc(100% / 8 * 5);
+.articles.layout1 li:nth-child(2) {
+  left: calc(100% / 12 * 0)!important;
+  top: calc(100% / 12 * 9)!important;
+  width: calc(100% / 12 * 7);
+  height: calc(100% / 12 * 3);
 }
-.articles li:nth-child(3) {
-  left: calc(100% / 7 * 3)!important;
-  top: calc(100% / 8 * 5)!important;
-  width: calc(100% / 7 * 4);
-  height: calc(100% / 8 * 3);
+.articles.layout1 li:nth-child(3) {
+  left: calc(100% / 12 * 7)!important;
+  top: calc(100% / 12 * 8)!important;
+  width: calc(100% / 12 * 5);
+  height: calc(100% / 12 * 4);
 }
-.articles li:nth-child(4) {
-  left: calc(100% / 7 * 0)!important;
-  top: calc(100% / 8 * 6)!important;
-  width: calc(100% / 7 * 3);
-  height: calc(100% / 8 * 1);
+.articles.layout1 li:nth-child(4) {
+  left: calc(100% / 12 * 0)!important;
+  top: calc(100% / 12 * 4)!important;
+  width: calc(100% / 12 * 4);
+  height: calc(100% / 12 * 5);
 }
-.articles li:nth-child(5) {
-  left: calc(100% / 7 * 0)!important;
-  top: calc(100% / 8 * 7)!important;
-  width: calc(100% / 7 * 3);
-  height: calc(100% / 8 * 1);
+.articles.layout1 li:nth-child(5) {
+  left: calc(100% / 12 * 7)!important;
+  top: calc(100% / 12 * 4)!important;
+  width: calc(100% / 12 * 5);
+  height: calc(100% / 12 * 4);
 }
-.articles li:nth-child(6) {
+.articles.layout1 li:nth-child(6) {
+  left: calc(100% / 12 * 4)!important;
+  top: calc(100% / 12 * 4)!important;
+  width: calc(100% / 12 * 3);
+  height: calc(100% / 12 * 5);
+}
+
+
+/* タイプ２ */
+.articles.layout2 li:nth-child(1) {
+  left: calc(100% / 12 * 8)!important;
+  top: calc(100% / 12 * 0)!important;
+  width: calc(100% / 12 * 4);
+  height: calc(100% / 12 * 12);
+}
+.articles.layout2 li:nth-child(2) {
+  left: calc(100% / 12 * 0)!important;
+  top: calc(100% / 12 * 7)!important;
+  width: calc(100% / 12 * 3);
+  height: calc(100% / 12 * 5);
+}
+.articles.layout2 li:nth-child(3) {
+  left: calc(100% / 12 * 0)!important;
+  top: calc(100% / 12 * 0)!important;
+  width: calc(100% / 12 * 4);
+  height: calc(100% / 12 * 7);
+}
+.articles.layout2 li:nth-child(4) {
+  left: calc(100% / 12 * 3)!important;
+  top: calc(100% / 12 * 7)!important;
+  width: calc(100% / 12 * 5);
+  height: calc(100% / 12 * 5);
+}
+.articles.layout2 li:nth-child(5) {
+  left: calc(100% / 12 * 4)!important;
+  top: calc(100% / 12 * 0)!important;
+  width: calc(100% / 12 * 4);
+  height: calc(100% / 12 * 7);
+}
+.articles.layout2 li:nth-child(6) {
   left: calc(100% / 7 * 0)!important;
   top: calc(100% / 7 * 0)!important;
   width: calc(100% / 7 * 7);
   height: calc(100% / 8 * 1);
+  display: none;
+}
+
+/* タイプ３ */
+.articles.layout3 li:nth-child(1) {
+  left: calc(100% / 12 * 8)!important;
+  top: calc(100% / 12 * 0)!important;
+  width: calc(100% / 12 * 4);
+  height: calc(100% / 12 * 7);
+}
+.articles.layout3 li:nth-child(2) {
+  left: calc(100% / 12 * 0)!important;
+  top: calc(100% / 12 * 4)!important;
+  width: calc(100% / 12 * 3);
+  height: calc(100% / 12 * 8);
+}
+.articles.layout3 li:nth-child(3) {
+  left: calc(100% / 12 * 0)!important;
+  top: calc(100% / 12 * 0)!important;
+  width: calc(100% / 12 * 8);
+  height: calc(100% / 12 * 4);
+}
+.articles.layout3 li:nth-child(4) {
+  left: calc(100% / 12 * 3)!important;
+  top: calc(100% / 12 * 7)!important;
+  width: calc(100% / 12 * 9);
+  height: calc(100% / 12 * 5);
+}
+.articles.layout3 li:nth-child(5) {
+  left: calc(100% / 12 * 3)!important;
+  top: calc(100% / 12 * 4)!important;
+  width: calc(100% / 12 * 5);
+  height: calc(100% / 12 * 3);
+}
+.articles.layout3 li:nth-child(6) {
+  left: calc(100% / 7 * 0)!important;
+  top: calc(100% / 7 * 0)!important;
+  width: calc(100% / 7 * 7);
+  height: calc(100% / 8 * 1);
+  display: none;
 }
 
 
