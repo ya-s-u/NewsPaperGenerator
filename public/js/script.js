@@ -244,12 +244,12 @@ $(function(){
       }
     })
 
-    // var url = "http://localhost:8080/public/editor.html";
-    // var html = $(".wrapper").html();
-    // var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
+    var url = "http://localhost:8080/public/editor.html";
+    var html = $(".wrapper").html();
+    var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
     
 
-    // var top = $("#articles").offset().top;
+    var top = $("#articles").offset().top;
     // var left = $("#articles").offset().left;
     // var width = $("#articles").width();
     // var height = $("#articles").height();
