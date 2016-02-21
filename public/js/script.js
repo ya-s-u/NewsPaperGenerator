@@ -41,7 +41,7 @@ $(function(){
     $(".editor .articles li").each(function(i, elem) {
       var articleData = getDataFromArticle(i);
       insertArticle(i, articleData.title, articleData.body, articleData.image, articleData.font, articleData.reverse);
-    }); 
+    });
   }
 
   // 記事をクリックしたらモダール表示
@@ -126,11 +126,13 @@ $(function(){
       ];
     }
 
+    var image_url = $("#show_image").prop('checked') ? image : ""
+
     $this.VerticalTextBox( {
       position: {
         x: $this.position().left,
         y: $this.position().top,
-        align: "right" 
+        align: "right"
       },
       rows: rows,
       title: {
@@ -142,13 +144,16 @@ $(function(){
       content: {
         text: body,
         size: 15
+      },
+      image: {
+        src: image_url
       }
     });
   }
 
   // クリックした記事からタイトルなどの情報を取得する　return title:string, body:string, image:string, font:font, reverse:boolean
   function getDataFromArticle(index) {
-    var $this = $('.editor .articles li').eq(index); 
+    var $this = $('.editor .articles li').eq(index);
     var title = $this.find("h2").text() || "";
     var body = $this.attr("body") || "";
     var image = $this.attr("image") || "";
@@ -182,7 +187,7 @@ $(function(){
       stopLoading();
     });
   });
-  
+
 
   var draggingIndex;
   var originTop, originLeft;
@@ -247,7 +252,7 @@ $(function(){
     // var url = "http://localhost:8080/public/editor.html";
     // var html = $(".wrapper").html();
     // var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
-    
+
 
     // var top = $("#articles").offset().top;
     // var left = $("#articles").offset().left;
@@ -298,13 +303,13 @@ $(function(){
   // modal表示
   function openModal() {
     modal.fadeIn("normal");
-    overlay.fadeIn("normal"); 
+    overlay.fadeIn("normal");
   }
 
   // modal非表示
   function closeModal() {
     modal.fadeOut("normal");
-    overlay.fadeOut("normal");   
+    overlay.fadeOut("normal");
   }
 
   // ロード中に表示
