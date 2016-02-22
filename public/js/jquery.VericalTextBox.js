@@ -24,6 +24,9 @@
         text: "",
         size: 18
       },
+      image: {
+        src: ""
+      },
       rules: [
         "、", "。", "）", "～"
       ]
@@ -45,10 +48,10 @@
       css: {
         "position": "absolute",
         "top": "0",
-        "margin": "0",
         "font-family": setting.title.font,
+        "margin": "0",
+        "overflow": "hidden",
         "font-size": setting.title.size,
-        "overflow": "hidden"
       },
       html: setting.title.text
     });
@@ -60,15 +63,32 @@
     }
     Box.append(title)
 
+    // 画像
+    if(setting.image.src != "") {
+      var image = $("<img>", {
+        width: 200,
+        height: setting.rows[0].height,
+        css: {
+          "position": "absolute",
+          "top": "0",
+          "left": 0,
+          "margin": "0",
+          "font-size": setting.title.size,
+        },
+        src: setting.image.src
+      })
+      Box.append(image)
+      setting.rows[0].width -= 210;
+    }
+
     // 段落
     var top = 0, pos = 0, width = setting.rows[0].width;
-    var now = 0;
     $.each(setting.rows, function(i, val) {
       var count = {
-        horizon: Math.floor((val.width == width ? val.width - setting.title.size : val.width)/setting.content.size/1.3 + 1),
+        horizon: Math.floor((val.width == width ? val.width - setting.title.size : val.width)/setting.content.size/1.2-1),
         vertical: Math.floor(val.height/setting.content.size)
       }
-      count.total = count.horizon * count.vertical+1;
+      count.total = count.horizon * count.vertical
 
       var prohibit = 0;
       for(var j=0; j<count.horizon; j++) {
@@ -77,12 +97,14 @@
       }
       count.total -= prohibit
 
-      now += val.width == width ? val.width - setting.title.size : val.width;
-      if(now > width+10000) {
-        var html = setting.content.text.substr(pos, count.total).replace(/。.*/g, "。" );
-      } else {
-        var html = setting.content.text.substr(pos, count.total)
-      }
+      var str = setting.content.text.substr(pos, count.total)
+      var body = str.replace(/([０-９]{2})/g, function($) {
+    		var n1 = String.fromCharCode($[0].charCodeAt(0)-0xFEE0);
+    		var n2 = String.fromCharCode($[1].charCodeAt(0)-0xFEE0);
+        return "<span style='-webkit-writing-mode:horizontal-tb;font-size:16px;letter-spacing:-1px;'>"+n1+n2+"</span>"
+    	});
+
+      //if(i == setting.rows.length-1) { body = body.match(/(.+。)/)[0]; }
 
       var row = $("<p></p>", {
         width: val.width == width ? val.width - setting.title.size : val.width,
@@ -93,11 +115,9 @@
           "top": top+"px",
           "font-size": setting.content.size+"px",
           "border-bottom": "1px solid #aaa",
-          "line-height": "19px"
         },
-        html: html
+        html: body
       });
-
       top += val.height
       pos += count.total
       var offset = setting.title.size+"px"

@@ -9,8 +9,8 @@ body {
 }
 
 .paper {
-  margin: 10px auto;
-  width: 70%;
+  margin: 20px;
+  width: 75%;
   min-width: 500px;
   height: auto;
   padding: 20px 10px;
@@ -303,9 +303,9 @@ body {
 /* articleEditor */
 .articleEditor {
   position: fixed;
-  right: 10px;
-  top: 10px;
-  height: 80%;
+  right: 20px;
+  top: 20px;
+  height: 90%;
   width: 13%;
   background: #fff;
   padding: 10px;

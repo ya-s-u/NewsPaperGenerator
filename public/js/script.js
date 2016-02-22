@@ -40,8 +40,8 @@ $(function(){
   function reload() {
     $(".editor .articles li").each(function(i, elem) {
       var articleData = getDataFromArticle(i);
-      insertArticle(i, articleData.title, articleData.body, articleData.image, articleData.font, articleData.reverse);
-    }); 
+      insertArticle(i, articleData.title, articleData.body, articleData.image, articleData.font, articleData.reverse, articleData.hasImage);
+    });
   }
 
   // 記事をクリックしたらモダール表示
@@ -61,6 +61,11 @@ $(function(){
       $("#reverse").prop("checked", true);
     } else {
       $("#reverse").prop("checked", false);
+    }
+    if(articleData.hasImage == true) {
+      $("#show_image").prop("checked", true);
+    } else {
+      $("#show_image").prop("checked", false);
     }
   });
 
@@ -90,12 +95,17 @@ $(function(){
     } else {
       var reverse = false;
     }
-    insertArticle(selectedIndex, title, body, image, selected_font, reverse);
+    if( $("#show_image").prop("checked") ) {
+      var hasImage = true;
+    } else {
+      var hasImage = false;
+    }
+    insertArticle(selectedIndex, title, body, image, selected_font, reverse, hasImage);
     closeModal();
   });
 
   // indexの記事にtitle, body, imageの記事を挿入
-  function insertArticle(index, title, body, image, font, reverse) {
+  function insertArticle(index, title, body, image, font, reverse, hasImage) {
 
     // 全角を半角に変更
     title = title.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
@@ -108,6 +118,7 @@ $(function(){
     $this.attr("body", body);
     $this.attr("image", image);
     $this.prop("reverse", reverse);
+    $this.prop("hasImage", hasImage);
     if(title=="" && body=="") return;
     var width = $this.width();
     var height = $this.height();
@@ -126,11 +137,13 @@ $(function(){
       ];
     }
 
+    var imageUrl = (hasImage) ? image : ""
+
     $this.VerticalTextBox( {
       position: {
         x: $this.position().left,
         y: $this.position().top,
-        align: "right" 
+        align: "right"
       },
       rows: rows,
       title: {
@@ -142,19 +155,23 @@ $(function(){
       content: {
         text: body,
         size: 15
+      },
+      image: {
+        src: imageUrl
       }
     });
   }
 
   // クリックした記事からタイトルなどの情報を取得する　return title:string, body:string, image:string, font:font, reverse:boolean
   function getDataFromArticle(index) {
-    var $this = $('.editor .articles li').eq(index); 
+    var $this = $('.editor .articles li').eq(index);
     var title = $this.find("h2").text() || "";
     var body = $this.attr("body") || "";
     var image = $this.attr("image") || "";
     var reverse = $this.prop("reverse") || false;
     var font = $this.find("h2").css("font-family") || "";
-    return {title: title, body: body, image: image, font: font, reverse: reverse}
+    var hasImage = $this.prop("hasImage") || "";
+    return {title: title, body: body, image: image, font: font, reverse: reverse, hasImage: hasImage}
   }
 
 
@@ -182,7 +199,7 @@ $(function(){
       stopLoading();
     });
   });
-  
+
 
   var draggingIndex;
   var originTop, originLeft;
@@ -222,8 +239,8 @@ $(function(){
     console.log(article1Data);
     console.log(article2Data);
 
-    insertArticle(index1, article2Data.title, article2Data.body, article2Data.image, article2Data.font, article2Data.reverse);
-    insertArticle(index2, article1Data.title, article1Data.body, article1Data.image, article1Data.font, article1Data.reverse);
+    insertArticle(index1, article2Data.title, article2Data.body, article2Data.image, article2Data.font, article2Data.reverse, article2Data.hasImage);
+    insertArticle(index2, article1Data.title, article1Data.body, article1Data.image, article1Data.font, article1Data.reverse, article1Data.hasImage);
     reload();
   }
 
@@ -247,7 +264,11 @@ $(function(){
     var url = "http://localhost:8080/public/editor.html";
     var html = $(".wrapper").html();
     var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
-    
+
+    // var url = "http://localhost:8080/public/editor.html";
+    // var html = $(".wrapper").html();
+    // var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
+
 
     var top = $("#articles").offset().top;
     // var left = $("#articles").offset().left;
@@ -298,13 +319,13 @@ $(function(){
   // modal表示
   function openModal() {
     modal.fadeIn("normal");
-    overlay.fadeIn("normal"); 
+    overlay.fadeIn("normal");
   }
 
   // modal非表示
   function closeModal() {
     modal.fadeOut("normal");
-    overlay.fadeOut("normal");   
+    overlay.fadeOut("normal");
   }
 
   // ロード中に表示
