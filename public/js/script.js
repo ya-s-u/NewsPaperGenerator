@@ -254,12 +254,12 @@ $(function(){
 
   // 画像としてアウトプット
   $("#image_output").click(function() {
-    html2canvas(document.body, {
-      onrendered: function(canvas) {
-        $("#ss").attr('src', canvas.toDataURL("image/png") );
-        $("#ss").show();
-      }
-    })
+    // html2canvas(document.body, {
+    //   onrendered: function(canvas) {
+    //     $("#ss").attr('src', canvas.toDataURL("image/png") );
+    //     $("#ss").show();
+    //   }
+    // })
 
     var url = "http://localhost:8080/public/editor.html";
     var html = $(".wrapper").html();
@@ -269,8 +269,25 @@ $(function(){
     // var html = $(".wrapper").html();
     // var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
 
+    var doc = new jsPDF('landscape');
 
-    var top = $("#articles").offset().top;
+    var source = $('.wrapper')[0];
+    var specialElementHandlers = {
+      "#ss": function(element, renderer) {
+        return true;
+      }
+    }
+    doc.fromHTML( source, 100, 100, {
+      'width': $(".wrapper").width(),
+      'elementHandlers': specialElementHandlers
+    });
+
+    //var pdfOutput = doc.output();
+    //$("#ss").attr("src", pdfOutput);
+    //console.log(">>>"+pdfOutput );
+    doc.output('dataurlnewwindow');
+
+    // var top = $("#articles").offset().top;
     // var left = $("#articles").offset().left;
     // var width = $("#articles").width();
     // var height = $("#articles").height();

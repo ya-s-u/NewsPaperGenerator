@@ -105,8 +105,7 @@
 
   <div class="articleEditor well">
     <h4 class="text-center">編集</h4>
-
-    <br>
+    <hr>
     <p>比率</p>
     <button type="button" class="btn btn-default btn-block by_16_9" id="switch_btn">4 : 3 に変更</button>
 
@@ -119,7 +118,7 @@
     <br>
     <p>出力</p>
     <a class="btn btn-default btn-block" id="html_output" href="/output_as_html">HTMLで出力する</a>
-    <a class="btn btn-default btn-block" id="image_output" href="/output_as_image">画像で出力する</a>
+    <a class="btn btn-default btn-block" id="image_output" href="#">画像で出力する</a>
 
   </div>
 
@@ -128,6 +127,17 @@
   <script src="js/jquery-1.11.3.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
   <script src="js/jquery.VericalTextBox.js"></script>
+  <script src="js/jspdf.js"></script>
+  <script src="js/jspdf/jspdf.plugin.standard_fonts_metrics.js"></script>
+  <script src="js/jspdf/jspdf.plugin.from_html.js"></script>
+  <script src="js/jspdf/jspdf.plugin.cell.js"></script>
+  <script src="js/jspdf/jspdf.plugin.split_text_to_size.js"></script>
+  <script src="js/jspdf/jspdf.plugin.addimage.js"></script>
+  <script src="js/jspdf/jspdf.plugin.sillysvgrenderer.js"></script>
+  <script src="js/jspdf/jspdf.plugin.javascript.js"></script>
+  <script src="js/jspdf/jspdf.PLUGINTEMPLATE.js"></script>
+  <script src="js/jspdf/jspdf.plugin.ie_below_9_shim.js"></script>
+
   <script src="js/html2canvas.js"></script>
   <script src="js/script.js"></script>
 </body>
