@@ -69,20 +69,6 @@ $(function(){
     }
   });
 
-  // 画像を追加したらそれを即時プレビュー
-  $("#article_image").change(function() {
-    if (!this.files.length) return;
-    var file = this.files[0];
-    var $img = $("#confirmation_image");
-    var fileReader = new FileReader();
-    fileReader.onload = function(event) {
-      $img.attr("src", event.target.result);
-      $img.show();
-    }
-    fileReader.readAsDataURL(file);
-  });
-
-
   // 記事更新を押したらフォームの内容を記事に流し込む
   $("#update").click(function(e) {
     e.preventDefault();
