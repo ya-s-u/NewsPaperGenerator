@@ -238,62 +238,6 @@ $(function(){
     return false;
   });
 
-  // 画像としてアウトプット
-  $("#image_output").click(function() {
-    // html2canvas(document.body, {
-    //   onrendered: function(canvas) {
-    //     $("#ss").attr('src', canvas.toDataURL("image/png") );
-    //     $("#ss").show();
-    //   }
-    // })
-
-    var url = "http://localhost:8080/public/editor.html";
-    var html = $(".wrapper").html();
-    var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
-
-    // var url = "http://localhost:8080/public/editor.html";
-    // var html = $(".wrapper").html();
-    // var url = "http://localhost:8080/output_as_html" + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
-
-    var doc = new jsPDF('landscape');
-
-    var source = $('.wrapper')[0];
-    var specialElementHandlers = {
-      "#ss": function(element, renderer) {
-        return true;
-      }
-    }
-    doc.fromHTML( source, 100, 100, {
-      'width': $(".wrapper").width(),
-      'elementHandlers': specialElementHandlers
-    });
-
-    //var pdfOutput = doc.output();
-    //$("#ss").attr("src", pdfOutput);
-    //console.log(">>>"+pdfOutput );
-    doc.output('dataurlnewwindow');
-
-    // var top = $("#articles").offset().top;
-    // var left = $("#articles").offset().left;
-    // var width = $("#articles").width();
-    // var height = $("#articles").height();
-    // $.ajax({
-    //   url: "/capture",
-    //   data: {url: url,top: top, left: left, width: width, height: height},
-    //   type: "get"
-    // })
-    // .done(function(data) {
-    //   $("#ss").attr("src", "data:image/png;base64," + data);
-    //   $("#ss").show();
-    // })
-    // .fail(function(data) {
-    //   alert("failed");
-    // });
-    // stopLoading();
-
-    return false;
-  });
-
   // フォント一覧表示
   var selecetd_font = "sans-serif";
   $(".dropdown").click(function() {
