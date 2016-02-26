@@ -3,7 +3,7 @@ $(function(){
   var overlay = $(".overlay");
   var lastLayouts = 1;
   var selectedIndex = 0;
-
+  console.log("ひ")
   // 4:3と16:9を変更
   $("#switch_btn").click(function() {
     if( $(this).hasClass("by_16_9") ) {
@@ -44,6 +44,7 @@ $(function(){
     });
   }
 
+  console.log("で")
   // 記事をクリックしたらモダール表示
   $(".editor .articles li").click(function(){
     openModal();
@@ -90,6 +91,7 @@ $(function(){
     closeModal();
   });
 
+      console.log("と")
   // indexの記事にtitle, body, imageの記事を挿入
   function insertArticle(index, title, body, image, font, reverse, hasImage) {
 
@@ -186,6 +188,7 @@ $(function(){
     });
   });
 
+  console.log("や")
 
   var draggingIndex;
   var originTop, originLeft;
@@ -262,6 +265,7 @@ $(function(){
   $(".overlay").click(function(){
     closeModal();
   });
+  console.log("す")
 
   // modal表示
   function openModal() {
