@@ -42,6 +42,13 @@
     Box.width(frame.width)
     Box.height(frame.height)
 
+    var title = setting.title.text.replace(/([0-9 ０-９]{1,4})/g, function($) {
+        nums = $.replace(/[Ａ-Ｚａ-ｚ０-９]/, function(s) {
+          return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+        });
+        return "<span style='-ms-text-combine-horizontal:all;text-combine-upright:all;'>"+nums+"</span>";
+      });
+
     // タイトル
     var title = $("<h2></h2>", {
       width: setting.title.size,
@@ -53,7 +60,7 @@
         "overflow": "hidden",
         "font-size": setting.title.size,
       },
-      html: setting.title.text
+      html: title
     });
     var offset = setting.rows[0].width - setting.title.size
     setting.position.align == "left" ? title.css({"left": offset+"px"}) : title.css({"right": "0"})
@@ -98,12 +105,14 @@
       count.total -= prohibit
 
       var str = setting.content.text.substr(pos, count.total)
-      var body = str.replace(/([０-９]{2})/g, function($) {
-    		var n1 = String.fromCharCode($[0].charCodeAt(0)-0xFEE0);
-    		var n2 = String.fromCharCode($[1].charCodeAt(0)-0xFEE0);
-        return "<span style='-webkit-writing-mode:horizontal-tb;font-size:16px;letter-spacing:-1px;'>"+n1+n2+"</span>"
-    	});
 
+      // 半角数字を縦書きに
+      var body = str.replace(/([0-9 ０-９]{1,4})/g, function($) {
+        nums = $.replace(/[Ａ-Ｚａ-ｚ０-９]/, function(s) {
+          return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+        });
+        return "<span style='-ms-text-combine-horizontal:all;text-combine-upright:all;'>"+nums+"</span>";
+      });
       //if(i == setting.rows.length-1) { body = body.match(/(.+。)/)[0]; }
 
       var row = $("<p></p>", {

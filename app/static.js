@@ -27,7 +27,6 @@ module.exports = function(server) {
 
     var output = fs.readFileSync( join(__dirname, "../public/preview.ejs") , 'utf8');
     var preview = fs.readFileSync( join(__dirname, "../public/css/preview.css"), "utf8");
-    //var style = fs.readFileSync( join(__dirname, "../public/css/style1.css"), "utf8");
     output = ejs.render(output, {
         html: html,
         preview: preview,
