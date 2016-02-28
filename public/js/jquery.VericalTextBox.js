@@ -18,7 +18,7 @@
         text: "",
         size: 22,
         font: "Meiryo",
-        reverse: false
+        reverse: "normal"
       },
       content: {
         text: "",
@@ -66,9 +66,11 @@
     setting.position.align == "left" ? title.css({"left": offset+"px"}) : title.css({"right": "0"})
     title.css('padding-right', '1px');
     title.css('padding-right', '1px');    
-    if(setting.title.reverse == true) {
+    if(setting.title.reverse == "black") {
       title.css("color", "white");
       title.css("background", "rgb(54,57,78)");
+    } else if(setting.title.reverse == "gray") {
+      title.css("background", "#9E9E9E");
     }
     Box.append(title)
 

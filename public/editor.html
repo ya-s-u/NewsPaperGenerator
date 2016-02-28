@@ -46,7 +46,7 @@
             <span class="input-group-addon" id="title">タイトル</span>
             <input type="text" class="form-control" id="article_title" placeholder="ネパール前首相、コイララ氏死去" aria-describedby="title">
 
-            <div class="input-group-btn">
+            <div class="input-group-btn" style="border-radius:0">
              <button type="button" class="btn btn-default dropdown">サイズ <span class="caret"></span></button>
               <ul class="dropdown-menu dropdown-menu-right title_size">
                 <li>20</li>
@@ -61,7 +61,7 @@
               </ul>
             </div>
 
-            <div class="input-group-btn">
+            <div class="input-group-btn" style="border-radius:0">
               <button type="button" class="btn btn-default dropdown">フォント <span class="caret"></span></button>
               <ul class="dropdown-menu dropdown-menu-right font">
                 <li class="selected"><span style="font-family:sans-serif">sans-serif</span></li>
@@ -78,9 +78,14 @@
               </ul>
             </div>
 
-            <span class="input-group-addon">
-              腹黒 <input type="checkbox" id="reverse" value="true">
-            </span>
+            <div class="input-group-btn" style="border-radius:0">
+              <button type="button" class="btn btn-default dropdown">背景 <span class="caret"></span></button>
+              <ul class="dropdown-menu dropdown-menu-right background">
+                <li class="selected" data-bg="normal">通常</li>
+                <li data-bg="black">黒</li>
+                <li data-bg="gray">グレー</li>
+              </ul>
+            </div>
           </div>
 
           <br>

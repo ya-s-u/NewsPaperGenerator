@@ -63,11 +63,18 @@ $(function(){
     body_size = $(this).text();
   });
 
+  var background = 'normal';
+  $('.dropdown-menu.background li').click(function() {
+    $('.dropdown-menu.background li.selected').removeClass('selected');
+    $(this).addClass('selected');
+    background = $(this).attr('data-bg');
+  });
+
   // 再挿入
   function reload() {
     $(".editor .articles li").each(function(i, elem) {
       var articleData = getDataFromArticle(i);
-      insertArticle(i, articleData.title, articleData.title_size, articleData.body, articleData.body_size, articleData.image, articleData.font, articleData.reverse, articleData.hasImage);
+      insertArticle(i, articleData.title, articleData.title_size, articleData.body, articleData.body_size, articleData.image, articleData.font, articleData.background, articleData.hasImage);
     });
   }
 
@@ -84,11 +91,6 @@ $(function(){
     } else {
       $("#confirmation_image").show();
     }
-    if(articleData.reverse == true) {
-      $("#reverse").prop("checked", true);
-    } else {
-      $("#reverse").prop("checked", false);
-    }
     if(articleData.hasImage == true) {
       $("#show_image").prop("checked", true);
     } else {
@@ -103,23 +105,17 @@ $(function(){
     var body = $("#article_body").val();
     var image = $("#confirmation_image").attr("src");
     var selected_font = $(".selected span").text();
-    if( $("#reverse").prop('checked') ) {
-      var reverse = true;
-    } else {
-      var reverse = false;
-    }
     if( $("#show_image").prop("checked") ) {
       var hasImage = true;
     } else {
       var hasImage = false;
     }
-    insertArticle(selectedIndex, title, title_size, body, body_size, image, selected_font, reverse, hasImage);
+    insertArticle(selectedIndex, title, title_size, body, body_size, image, selected_font, background, hasImage);
     closeModal();
   });
 
   // indexの記事にtitle, body, imageの記事を挿入
-  function insertArticle(index, title, title_size, body, body_size, image, font, reverse, hasImage) {
-    console.log(title_size);
+  function insertArticle(index, title, title_size, body, body_size, image, font, background, hasImage) {
     // 全角を半角に変更
     title = title.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
       return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
@@ -135,7 +131,8 @@ $(function(){
     $this.attr('title_size', title_size);
     $this.attr('body_size', body_size);
     $this.attr("image", image);
-    $this.prop("reverse", reverse);
+    $this.attr('background', background)
+    //$this.prop("reverse", reverse);
     $this.prop("hasImage", hasImage);
     if(title=="" && body=="") return;
     var width = $this.width();
@@ -168,7 +165,7 @@ $(function(){
         text: title,
         size: title_size,
         font: font,
-        reverse: reverse
+        reverse: background
       },
       content: {
         text: body,
@@ -188,10 +185,11 @@ $(function(){
     var body = $this.attr("body") || "";
     var body_size = $this.attr("body_size") || "18";
     var image = $this.attr("image") || "";
-    var reverse = $this.prop("reverse") || false;
+    //var reverse = $this.prop("reverse") || false;
+    var background = $this.attr('background') || "normal";
     var font = $this.find("h2").css("font-family") || "";
     var hasImage = $this.prop("hasImage") || "";
-    return {title: title, title_size: title_size, body: body,  body_size: body_size, image: image, font: font, reverse: reverse, hasImage: hasImage}
+    return {title: title, title_size: title_size, body: body,  body_size: body_size, image: image, font: font, background: background, hasImage: hasImage}
   }
 
 
