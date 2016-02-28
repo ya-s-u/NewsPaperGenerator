@@ -45,7 +45,6 @@ body {
 .articles li {
   overflow: hidden;
   position: absolute;
-  //border: 1px solid #333;
 }
 .articles li h2 {
   line-height: 1em;

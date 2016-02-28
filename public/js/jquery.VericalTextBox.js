@@ -75,14 +75,13 @@
     // 画像
     if(setting.image.src != "") {
       var image = $("<img>", {
-        width: 200,
         height: setting.rows[0].height,
+        width: "auto",
         css: {
           "position": "absolute",
           "top": "0",
           "left": 0,
           "margin": "0",
-          "font-size": setting.title.size,
         },
         src: setting.image.src
       })

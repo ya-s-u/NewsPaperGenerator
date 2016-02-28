@@ -264,6 +264,7 @@ $(function(){
   // htmlとしてアウトプット
   $("#html_output").click(function() {
     var html = $(".wrapper").html();
+    console.log(html);
     var url = $(this).attr("href") + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
     window.open(url, "_blank");
     return false;
