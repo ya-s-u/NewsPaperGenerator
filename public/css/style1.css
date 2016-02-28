@@ -212,7 +212,12 @@ body {
   height: calc(100% / 8 * 1);
   display: none;
 }
-
+.dropdown {
+  z-index: 1001;
+}
+.dropdown-menu {
+  z-index: 1002;
+}
 
 /* footer */
 .footer {

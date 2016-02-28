@@ -43,11 +43,11 @@
     Box.height(frame.height)
 
     var title = setting.title.text.replace(/([0-9 ０-９]{1,4})/g, function($) {
-        nums = $.replace(/[Ａ-Ｚａ-ｚ０-９]/, function(s) {
-          return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-        });
-        return "<span style='-ms-text-combine-horizontal:all;text-combine-upright:all;'>"+nums+"</span>";
+      nums = $.replace(/[Ａ-Ｚａ-ｚ０-９]/, function(s) {
+        return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
       });
+      return "<span style='-ms-text-combine-horizontal:all;text-combine-upright:all;'>"+nums+"</span>";
+    });
 
     // タイトル
     var title = $("<h2></h2>", {
@@ -58,12 +58,14 @@
         "font-family": setting.title.font,
         "margin": "0",
         "overflow": "hidden",
-        "font-size": setting.title.size,
+        "font-size": setting.title.size+"px",
       },
       html: title
     });
-    var offset = setting.rows[0].width - setting.title.size
+    var offset = setting.rows[0].width - setting.title.size;
     setting.position.align == "left" ? title.css({"left": offset+"px"}) : title.css({"right": "0"})
+    title.css('padding-right', '1px');
+    title.css('padding-right', '1px');    
     if(setting.title.reverse == true) {
       title.css("color", "white");
       title.css("background", "rgb(54,57,78)");

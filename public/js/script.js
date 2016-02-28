@@ -3,7 +3,7 @@ $(function(){
   var overlay = $(".overlay");
   var lastLayouts = 1;
   var selectedIndex = 0;
-  console.log("ひ")
+
   // 4:3と16:9を変更
   $("#switch_btn").click(function() {
     if( $(this).hasClass("by_16_9") ) {
@@ -36,15 +36,41 @@ $(function(){
     reload();
   });
 
+  $(".dropdown").click(function() {
+    $(this).next(".dropdown-menu").toggle();
+  });
+
+  // フォント一覧表示
+  var selecetd_font = "sans-serif";
+  $(".dropdown-menu.font li").click(function() {
+    $(".dropdown-menu.font li.selected").removeClass("selected");
+    $(this).addClass("selected");
+    selected_font = $(this).find("span").text();
+  });  
+
+  // タイトルフォントサイズ変更
+  var title_size = '24';
+  $('.dropdown-menu.title_size li').click(function() {
+    $(".dropdown-menu.title_size li.selected").removeClass('selected');
+    $(this).addClass('selected');
+    title_size = $(this).text();
+  });
+
+  var body_size = '16';
+  $('.dropdown-menu.body_size li').click(function() {
+    $(".dropdown-menu.body_size li.selected").removeClass('selected');
+    $(this).addClass('selected');
+    body_size = $(this).text();
+  });
+
   // 再挿入
   function reload() {
     $(".editor .articles li").each(function(i, elem) {
       var articleData = getDataFromArticle(i);
-      insertArticle(i, articleData.title, articleData.body, articleData.image, articleData.font, articleData.reverse, articleData.hasImage);
+      insertArticle(i, articleData.title, articleData.title_size, articleData.body, articleData.body_size, articleData.image, articleData.font, articleData.reverse, articleData.hasImage);
     });
   }
 
-  console.log("で")
   // 記事をクリックしたらモダール表示
   $(".editor .articles li").click(function(){
     openModal();
@@ -87,14 +113,13 @@ $(function(){
     } else {
       var hasImage = false;
     }
-    insertArticle(selectedIndex, title, body, image, selected_font, reverse, hasImage);
+    insertArticle(selectedIndex, title, title_size, body, body_size, image, selected_font, reverse, hasImage);
     closeModal();
   });
 
-      console.log("と")
   // indexの記事にtitle, body, imageの記事を挿入
-  function insertArticle(index, title, body, image, font, reverse, hasImage) {
-
+  function insertArticle(index, title, title_size, body, body_size, image, font, reverse, hasImage) {
+    console.log(title_size);
     // 全角を半角に変更
     title = title.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
       return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
@@ -107,6 +132,8 @@ $(function(){
     $this.empty();
     $this.removeAttr("style");
     $this.attr("body", body);
+    $this.attr('title_size', title_size);
+    $this.attr('body_size', body_size);
     $this.attr("image", image);
     $this.prop("reverse", reverse);
     $this.prop("hasImage", hasImage);
@@ -139,13 +166,13 @@ $(function(){
       rows: rows,
       title: {
         text: title,
-        size: 24,
+        size: title_size,
         font: font,
         reverse: reverse
       },
       content: {
         text: body,
-        size: 15
+        size: body_size
       },
       image: {
         src: imageUrl
@@ -157,12 +184,14 @@ $(function(){
   function getDataFromArticle(index) {
     var $this = $('.editor .articles li').eq(index);
     var title = $this.find("h2").text() || "";
+    var title_size = $this.attr("title_size") || "22";
     var body = $this.attr("body") || "";
+    var body_size = $this.attr("body_size") || "18";
     var image = $this.attr("image") || "";
     var reverse = $this.prop("reverse") || false;
     var font = $this.find("h2").css("font-family") || "";
     var hasImage = $this.prop("hasImage") || "";
-    return {title: title, body: body, image: image, font: font, reverse: reverse, hasImage: hasImage}
+    return {title: title, title_size: title_size, body: body,  body_size: body_size, image: image, font: font, reverse: reverse, hasImage: hasImage}
   }
 
 
@@ -191,7 +220,6 @@ $(function(){
     });
   });
 
-  console.log("や")
 
   var draggingIndex;
   var originTop, originLeft;
@@ -228,11 +256,8 @@ $(function(){
     var article1Data = getDataFromArticle(index1);
     var article2Data = getDataFromArticle(index2);
 
-    console.log(article1Data);
-    console.log(article2Data);
-
-    insertArticle(index1, article2Data.title, article2Data.body, article2Data.image, article2Data.font, article2Data.reverse, article2Data.hasImage);
-    insertArticle(index2, article1Data.title, article1Data.body, article1Data.image, article1Data.font, article1Data.reverse, article1Data.hasImage);
+    insertArticle(index1, article2Data.title, article2Data.title_size, article2Data.body, article2Data.body_size, article2Data.image, article2Data.font, article2Data.reverse, article2Data.hasImage);
+    insertArticle(index2, article1Data.title, article1Data.title_size, article1Data.body, article1Data.body_size, article1Data.image, article1Data.font, article1Data.reverse, article1Data.hasImage);
     reload();
   }
 
@@ -242,17 +267,6 @@ $(function(){
     var url = $(this).attr("href") + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
     window.open(url, "_blank");
     return false;
-  });
-
-  // フォント一覧表示
-  var selecetd_font = "sans-serif";
-  $(".dropdown").click(function() {
-    $(".dropdown-menu").toggle();
-  });
-  $(".dropdown-menu li").click(function() {
-    $(".dropdown-menu li.selected").removeClass("selected");
-    $(this).addClass("selected");
-    selected_font = $(this).find("span").text();
   });
 
   // リバースかどうか
@@ -268,7 +282,6 @@ $(function(){
   $(".overlay").click(function(){
     closeModal();
   });
-  console.log("す")
 
   // modal表示
   function openModal() {
