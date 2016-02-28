@@ -42,7 +42,7 @@
     Box.width(frame.width)
     Box.height(frame.height)
 
-    var title = setting.title.text.replace(/([0-9 ０-９]{1,4})/g, function($) {
+    var title = setting.title.text.replace(/([0-9 ０-９]{1,2})/g, function($) {
       nums = $.replace(/[Ａ-Ｚａ-ｚ０-９]/, function(s) {
         return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
       });
@@ -108,7 +108,7 @@
       var str = setting.content.text.substr(pos, count.total)
 
       // 半角数字を縦書きに
-      var body = str.replace(/([0-9 ０-９]{1,4})/g, function($) {
+      var body = str.replace(/([0-9 ０-９]{1,2})/g, function($) {
         nums = $.replace(/[Ａ-Ｚａ-ｚ０-９]/, function(s) {
           return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
         });
