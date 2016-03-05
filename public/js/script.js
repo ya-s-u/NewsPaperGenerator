@@ -7,6 +7,10 @@ $(function(){
     width: $("#articles").width()-40,
     height: $("#articles").height()-40,
   }
+  var select = {
+    screen: "pc",
+    layout: 4
+  }
 
   // 記事
   var articles = [
@@ -32,6 +36,11 @@ $(function(){
     },
     {
       title: "おおお",
+      content: "",
+      image: ""
+    },
+    {
+      title: "かかか",
       content: "",
       image: ""
     }
@@ -78,7 +87,7 @@ $(function(){
             {width: 1/7*size.width, height: 1/5*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -99,7 +108,7 @@ $(function(){
             {width: 9/16*size.width, height: 1/5*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -122,7 +131,7 @@ $(function(){
             {width: 2/7*size.width, height: 1/5*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -135,7 +144,7 @@ $(function(){
       5: [
         {
           position: {
-            x: 1*size.width,
+            x: 2/3*size.width,
             y: 0,
             align: "right"
           },
@@ -180,7 +189,7 @@ $(function(){
         },
         {
           position: {
-            x: 5/6*size.width,
+            x: 1/3*size.width,
             y: 3/5*size.height,
             align: "right"
           },
@@ -200,7 +209,7 @@ $(function(){
         },
         {
           position: {
-            x: 1/3*size.width,
+            x: 0,
             y: 0,
             align: "right"
           },
@@ -245,15 +254,15 @@ $(function(){
       6: [
         {
           position: {
-            x: 1*size.width,
+            x: 13/20*size.width,
             y: 0,
             align: "right"
           },
           rows: [
-            {width: 13/20*size.width, height: 1/5*size.height},
-            {width: 17/20*size.width, height: 1/5*size.height},
-            {width: 17/20*size.width, height: 1/5*size.height},
-            {width: 9/10*size.width, height: 1/5*size.height},
+            {width: 7/20*size.width, height: 1/5*size.height},
+            {width: 3/20*size.width, height: 1/5*size.height},
+            {width: 3/20*size.width, height: 1/5*size.height},
+            {width: 1/4*size.width, height: 1/5*size.height},
           ],
           title: {
             text: "",
@@ -267,7 +276,7 @@ $(function(){
         },
         {
           position: {
-            x: 13/20*size.width,
+            x: 0,
             y: 0,
             align: "right"
           },
@@ -309,7 +318,7 @@ $(function(){
         },
         {
           position: {
-            x: 13/20*size.width,
+            x: 7/40*size.width,
             y: 3/5*size.height,
             align: "right"
           },
@@ -329,7 +338,7 @@ $(function(){
         },
         {
           position: {
-            x: 7/40*size.width,
+            x: 0,
             y: 1/5*size.height,
             align: "right"
           },
@@ -351,8 +360,8 @@ $(function(){
         },
         {
           position: {
-            x: 1*size.width,
-            y: 1/5*size.height,
+            x: 13/20*size.width,
+            y: 4/5*size.height,
             align: "right"
           },
           rows: [
@@ -467,45 +476,22 @@ $(function(){
       5: [
         {
           position: {
-            x: 1*size.width,
-            y: 0,
-            align: "right"
-          },
-          rows: [
-            {width: 2/5*size.width, height: 1/8*size.height},
-            {width: 2/5*size.width, height: 1/8*size.height},
-            {width: 2/5*size.width, height: 1/8*size.height},
-            {width: 2/5*size.width, height: 1/8*size.height},
-            {width: 2/5*size.width, height: 1/8*size.height},
-            {width: 2/15*size.width, height: 1/8*size.height},
-            {width: 2/15*size.width, height: 1/8*size.height},
-            {width: 2/15*size.width, height: 1/8*size.height},
-          ],
-          title: {
-            text: "s",
-            size: 24,
-            reverse: false
-          },
-          content: {
-            text: "",
-            size: 18
-          }
-        },
-        {
-          position: {
             x: 3/5*size.width,
             y: 0,
             align: "right"
           },
           rows: [
-            {width: 4/15*size.width, height: 1/8*size.height},
-            {width: 4/15*size.width, height: 1/8*size.height},
-            {width: 4/15*size.width, height: 1/8*size.height},
-            {width: 4/15*size.width, height: 1/8*size.height},
-            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/15*size.width, height: 1/8*size.height},
+            {width: 2/15*size.width, height: 1/8*size.height},
+            {width: 2/15*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -521,14 +507,14 @@ $(function(){
             align: "right"
           },
           rows: [
-            {width: 1/3*size.width, height: 1/8*size.height},
-            {width: 1/3*size.width, height: 1/8*size.height},
-            {width: 1/3*size.width, height: 1/8*size.height},
-            {width: 1/3*size.width, height: 1/8*size.height},
-            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -539,7 +525,30 @@ $(function(){
         },
         {
           position: {
-            x: 13/15*size.width,
+            x: 0,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 2/3*size.width,
             y: 5/8*size.height,
             align: "right"
           },
@@ -549,7 +558,7 @@ $(function(){
             {width: 2/3*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -570,7 +579,7 @@ $(function(){
             {width: 1/5*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -583,7 +592,7 @@ $(function(){
       6: [
         {
           position: {
-            x: 1*size.width,
+            x: 1/4*size.width,
             y: 0,
             align: "right"
           },
@@ -596,7 +605,7 @@ $(function(){
             {width: 1/3*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -607,7 +616,7 @@ $(function(){
         },
         {
           position: {
-            x: 1/4*size.width,
+            x: 0,
             y: 0,
             align: "right"
           },
@@ -619,18 +628,18 @@ $(function(){
             {width: 1/4*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
           content: {
             text: "",
             size: 18
-          },
+          }
         },
         {
           position: {
-            x: 2/3*size.width,
+            x: 4/15*size.width,
             y: 1/2*size.height,
             align: "right"
           },
@@ -640,7 +649,7 @@ $(function(){
             {width: 2/5*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -651,7 +660,7 @@ $(function(){
         },
         {
           position: {
-            x: 1/4*size.width,
+            x: 0,
             y: 5/8*size.height,
             align: "right"
           },
@@ -660,7 +669,26 @@ $(function(){
             {width: 1/4*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 0,
+            y: 7/8*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 2/3*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "",
             size: 24,
             reverse: false
           },
@@ -672,25 +700,6 @@ $(function(){
         {
           position: {
             x: 2/3*size.width,
-            y: 7/8*size.height,
-            align: "right"
-          },
-          rows: [
-            {width: 2/3*size.width, height: 1/8*size.height},
-          ],
-          title: {
-            text: "s",
-            size: 24,
-            reverse: false
-          },
-          content: {
-            text: "",
-            size: 18
-          }
-        },
-        {
-          position: {
-            x: 1*size.width,
             y: 3/4*size.height,
             align: "right"
           },
@@ -699,7 +708,7 @@ $(function(){
             {width: 1/3*size.width, height: 1/8*size.height},
           ],
           title: {
-            text: "s",
+            text: "",
             size: 24,
             reverse: false
           },
@@ -712,6 +721,8 @@ $(function(){
     }
   }
 
+  reloadArticles()
+
   // 4:3と16:9を変更
   $("#switch_btn").click(function() {
     if( $(this).hasClass("by_16_9") ) {
@@ -720,14 +731,17 @@ $(function(){
       $(this).text("16 : 9 に変更");
       $(".articles_area").removeClass("by_16_9");
       $(".articles_area").addClass("by_4_3");
+      select.screen = "tablet"
     } else {
       $(this).removeClass("by_4_3");
       $(this).addClass("by_16_9");
       $(this).text("4 : 3 に変更");
       $(".articles_area").removeClass("by_4_3");
       $(".articles_area").addClass("by_16_9");
+      select.screen = "pc"
     }
-    reload();
+    // reload();
+    reloadArticles()
   });
 
   // レイアウト変更
@@ -741,7 +755,10 @@ $(function(){
     lastLayouts = id;
     $("." + lastLayoutsClass).removeClass("selected");
     $(this).addClass("selected");
-    reload();
+    select.layout = Number(id)+3
+    // reload();
+    reloadArticles()
+
   });
 
   $(".dropdown").click(function() {
@@ -1011,19 +1028,22 @@ $(function(){
     $(".loading").hide();
   }
 
-  reloadArticles()
-  console.log(layouts)
-
   // 紙面再挿入
   function reloadArticles() {
-    articles.forEach(function(article, i) {
-       createArticle(article, i, true)
+    size = {
+      width: $("#articles").width()-40,
+      height: $("#articles").height()-40,
+    }
+    $("#articles li").empty()
+    console.log(size)
+      console.log(layouts[select.screen][select.layout])
+    layouts[select.screen][select.layout].forEach(function(layout, i) {
+       createArticle(articles[i], layout, i)
     });
   }
 
   // 記事挿入
-  function createArticle(article, target, isPC) {
-    var layout = layouts['pc']['4'][target]
+  function createArticle(article, layout, target) {
     $("#articles li").eq(target).VerticalTextBox({
       position: {
         x: layout.position.x,
