@@ -3,6 +3,714 @@ $(function(){
   var overlay = $(".overlay");
   var lastLayouts = 1;
   var selectedIndex = 0;
+  var size = {
+    width: $("#articles").width()-40,
+    height: $("#articles").height()-40,
+  }
+
+  // 記事
+  var articles = [
+    {
+      title: "あああ",
+      content: "",
+      image: ""
+    },
+    {
+      title: "いいい",
+      content: "",
+      image: ""
+    },
+    {
+      title: "ううう",
+      content: "",
+      image: ""
+    },
+    {
+      title: "えええ",
+      content: "",
+      image: ""
+    },
+    {
+      title: "おおお",
+      content: "",
+      image: ""
+    }
+  ]
+
+  // レイアウト
+  var layouts = {
+    pc: {
+      4: [
+        {
+          position: {
+            x: 5/7*size.width,
+            y: 0,
+            align: "left"
+          },
+          rows: [
+            {width: 2/7*size.width, height: 1/5*size.height},
+            {width: 2/7*size.width, height: 1/5*size.height},
+            {width: 2/7*size.width, height: 1/5*size.height},
+            {width: 2/7*size.width, height: 1/5*size.height},
+            {width: 2/7*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 2/7*size.width,
+            y: 0,
+            align: "left"
+          },
+          rows: [
+            {width: 3/7*size.width, height: 1/5*size.height},
+            {width: 3/7*size.width, height: 1/5*size.height},
+            {width: 1/7*size.width, height: 1/5*size.height},
+            {width: 1/7*size.width, height: 1/5*size.height},
+            {width: 1/7*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 3/7*size.width,
+            y: 2/5*size.height,
+            align: "left"
+          },
+          rows: [
+            {width: 9/16*size.width, height: 1/5*size.height},  //横タイトルが入って，その部分の段の大きさが変更された際の書き方について相談
+            {width: 9/16*size.width, height: 1/5*size.height},
+            {width: 9/16*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 0,
+            y: 0,
+            align: "left"
+          },
+          rows: [
+            {width: 2/7*size.width, height: 1/5*size.height},
+            {width: 2/7*size.width, height: 1/5*size.height},
+            {width: 2/7*size.width, height: 1/5*size.height},
+            {width: 2/7*size.width, height: 1/5*size.height},
+            {width: 2/7*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        }
+      ],
+      5: [
+        {
+          position: {
+            x: 1*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/6*size.width, height: 1/5*size.height},
+            {width: 1/6*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 1/3*size.width,
+            y: 0,
+            align: "left"
+          },
+          rows: [
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/6*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 5/6*size.width,
+            y: 3/5*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/2*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 1/3*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/3*size.width, height: 1/5*size.height},
+            {width: 1/6*size.width, height: 1/5*size.height},
+            {width: 1/6*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 0,
+            y: 2/5*size.height,
+            align: "left"
+          },
+          rows: [
+            {width: 1/6*size.width, height: 1/5*size.height},
+            {width: 1/6*size.width, height: 1/5*size.height},
+            {width: 1/3*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        }
+      ],
+      6: [
+        {
+          position: {
+            x: 1*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 13/20*size.width, height: 1/5*size.height},
+            {width: 17/20*size.width, height: 1/5*size.height},
+            {width: 17/20*size.width, height: 1/5*size.height},
+            {width: 9/10*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 13/20*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 13/20*size.width, height: 1/5*size.height},
+            {width: 19/40*size.width, height: 1/5*size.height},
+            {width: 19/40*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 13/20*size.width,
+            y: 1/5*size.height,
+            align: "left"
+          },
+          rows: [
+            {width: 1/5*size.width, height: 1/5*size.height},
+            {width: 1/5*size.width, height: 1/5*size.height},
+            {width: 1/4*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 13/20*size.width,
+            y: 3/5*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 19/40*size.width, height: 1/5*size.height}, //横タイトルが相談必要
+            {width: 19/40*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 7/40*size.width,
+            y: 1/5*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 7/40*size.width, height: 1/5*size.height},
+            {width: 7/40*size.width, height: 1/5*size.height},
+            {width: 7/40*size.width, height: 1/5*size.height},
+            {width: 7/40*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 1*size.width,
+            y: 1/5*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 7/20*size.width, height: 1/5*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        }
+      ]
+    },
+    tablet: {
+      4: [
+        {
+          position: {
+            x: 1/2*size.width,
+            y: 0,
+            align: "left"
+          },
+          rows: [
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/2*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 0*size.width,
+            y: 0,
+            align: "left"
+          },
+          rows: [
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/2*size.width, height: 1/8*size.height},
+            {width: 1/6*size.width, height: 1/8*size.height},
+            {width: 1/6*size.width, height: 1/8*size.height},
+            {width: 1/6*size.width, height: 1/8*size.height},
+            {width: 1/6*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 1/6*size.width,
+            y: 3/8*size.height,
+            align: "left"
+          },
+          rows: [
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 0,
+            y: 7/8*size.height,
+            align: "left"
+          },
+          rows: [
+            {width: 1*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        }
+      ],
+      5: [
+        {
+          position: {
+            x: 1*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/15*size.width, height: 1/8*size.height},
+            {width: 2/15*size.width, height: 1/8*size.height},
+            {width: 2/15*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 3/5*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
+            {width: 4/15*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 1/3*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 13/15*size.width,
+            y: 5/8*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 1/5*size.width, height: 1/8*size.height},
+            {width: 1/5*size.width, height: 1/8*size.height},
+            {width: 2/3*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 0,
+            y: 5/8*size.height,
+            align: "left"
+          },
+          rows: [
+            {width: 2/3*size.width, height: 1/8*size.height},
+            {width: 2/3*size.width, height: 1/8*size.height},
+            {width: 1/5*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        }
+      ],
+      6: [
+        {
+          position: {
+            x: 1*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 3/4*size.width, height: 1/8*size.height},
+            {width: 3/4*size.width, height: 1/8*size.height},
+            {width: 3/4*size.width, height: 1/8*size.height},
+            {width: 3/4*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 1/4*size.width,
+            y: 0,
+            align: "right"
+          },
+          rows: [
+            {width: 1/4*size.width, height: 1/8*size.height},
+            {width: 1/4*size.width, height: 1/8*size.height},
+            {width: 1/4*size.width, height: 1/8*size.height},
+            {width: 1/4*size.width, height: 1/8*size.height},
+            {width: 1/4*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          },
+        },
+        {
+          position: {
+            x: 2/3*size.width,
+            y: 1/2*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 2/5*size.width, height: 1/8*size.height}, //タイトルが横方向で，位置について相談しないと．
+            {width: 2/5*size.width, height: 1/8*size.height},
+            {width: 2/5*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 1/4*size.width,
+            y: 5/8*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 1/4*size.width, height: 1/8*size.height},
+            {width: 1/4*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 2/3*size.width,
+            y: 7/8*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 2/3*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        },
+        {
+          position: {
+            x: 1*size.width,
+            y: 3/4*size.height,
+            align: "right"
+          },
+          rows: [
+            {width: 1/3*size.width, height: 1/8*size.height},
+            {width: 1/3*size.width, height: 1/8*size.height},
+          ],
+          title: {
+            text: "s",
+            size: 24,
+            reverse: false
+          },
+          content: {
+            text: "",
+            size: 18
+          }
+        }
+      ]
+    }
+  }
 
   // 4:3と16:9を変更
   $("#switch_btn").click(function() {
@@ -46,7 +754,7 @@ $(function(){
     $(".dropdown-menu.font li.selected").removeClass("selected");
     $(this).addClass("selected");
     selected_font = $(this).find("span").text();
-  });  
+  });
 
   // タイトルフォントサイズ変更
   var title_size = '24';
@@ -301,6 +1009,38 @@ $(function(){
   // ロード終了
   function stopLoading() {
     $(".loading").hide();
+  }
+
+  reloadArticles()
+  console.log(layouts)
+
+  // 紙面再挿入
+  function reloadArticles() {
+    articles.forEach(function(article, i) {
+       createArticle(article, i, true)
+    });
+  }
+
+  // 記事挿入
+  function createArticle(article, target, isPC) {
+    var layout = layouts['pc']['4'][target]
+    $("#articles li").eq(target).VerticalTextBox({
+      position: {
+        x: layout.position.x,
+        y: layout.position.y,
+        align: layout.position.align
+      },
+      rows: layout.rows,
+      title: {
+        text: article.title,
+        size: layout.title.size,
+        reverse: layout.title.reverse
+      },
+      content: {
+        text: article.content,
+        size: layout.content.size
+      }
+    });
   }
 
 })

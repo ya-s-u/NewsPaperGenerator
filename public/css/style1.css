@@ -65,9 +65,8 @@ body {
 .articles li {
   overflow: hidden;
   position: absolute;
-  border: 1px solid #ddd;
 }
-.articles li:hover {
+.articles li:hover p, .articles li:hover h2 {
   background: #ccc;
   cursor: move;
 }
@@ -96,122 +95,6 @@ body {
   border-bottom: none;
 }
 
-/* タイプ１ */
-.articles.layout1 li:nth-child(1) {
-  left: calc(100% / 12 * 0)!important;
-  top: calc(100% / 12 * 0)!important;
-  width: calc(100% / 12 * 12);
-  height: calc(100% / 12 * 4);
-}
-.articles.layout1 li:nth-child(2) {
-  left: calc(100% / 12 * 0)!important;
-  top: calc(100% / 12 * 9)!important;
-  width: calc(100% / 12 * 7);
-  height: calc(100% / 12 * 3);
-}
-.articles.layout1 li:nth-child(3) {
-  left: calc(100% / 12 * 7)!important;
-  top: calc(100% / 12 * 8)!important;
-  width: calc(100% / 12 * 5);
-  height: calc(100% / 12 * 4);
-}
-.articles.layout1 li:nth-child(4) {
-  left: calc(100% / 12 * 0)!important;
-  top: calc(100% / 12 * 4)!important;
-  width: calc(100% / 12 * 4);
-  height: calc(100% / 12 * 5);
-}
-.articles.layout1 li:nth-child(5) {
-  left: calc(100% / 12 * 7)!important;
-  top: calc(100% / 12 * 4)!important;
-  width: calc(100% / 12 * 5);
-  height: calc(100% / 12 * 4);
-}
-.articles.layout1 li:nth-child(6) {
-  left: calc(100% / 12 * 4)!important;
-  top: calc(100% / 12 * 4)!important;
-  width: calc(100% / 12 * 3);
-  height: calc(100% / 12 * 5);
-}
-
-
-/* タイプ２ */
-.articles.layout2 li:nth-child(1) {
-  left: calc(100% / 12 * 8)!important;
-  top: calc(100% / 12 * 0)!important;
-  width: calc(100% / 12 * 4);
-  height: calc(100% / 12 * 12);
-}
-.articles.layout2 li:nth-child(2) {
-  left: calc(100% / 12 * 0)!important;
-  top: calc(100% / 12 * 7)!important;
-  width: calc(100% / 12 * 3);
-  height: calc(100% / 12 * 5);
-}
-.articles.layout2 li:nth-child(3) {
-  left: calc(100% / 12 * 0)!important;
-  top: calc(100% / 12 * 0)!important;
-  width: calc(100% / 12 * 4);
-  height: calc(100% / 12 * 7);
-}
-.articles.layout2 li:nth-child(4) {
-  left: calc(100% / 12 * 3)!important;
-  top: calc(100% / 12 * 7)!important;
-  width: calc(100% / 12 * 5);
-  height: calc(100% / 12 * 5);
-}
-.articles.layout2 li:nth-child(5) {
-  left: calc(100% / 12 * 4)!important;
-  top: calc(100% / 12 * 0)!important;
-  width: calc(100% / 12 * 4);
-  height: calc(100% / 12 * 7);
-}
-.articles.layout2 li:nth-child(6) {
-  left: calc(100% / 7 * 0)!important;
-  top: calc(100% / 7 * 0)!important;
-  width: calc(100% / 7 * 7);
-  height: calc(100% / 8 * 1);
-  display: none;
-}
-
-/* タイプ３ */
-.articles.layout3 li:nth-child(1) {
-  left: calc(100% / 12 * 8)!important;
-  top: calc(100% / 12 * 0)!important;
-  width: calc(100% / 12 * 4);
-  height: calc(100% / 12 * 7);
-}
-.articles.layout3 li:nth-child(2) {
-  left: calc(100% / 12 * 0)!important;
-  top: calc(100% / 12 * 4)!important;
-  width: calc(100% / 12 * 3);
-  height: calc(100% / 12 * 8);
-}
-.articles.layout3 li:nth-child(3) {
-  left: calc(100% / 12 * 0)!important;
-  top: calc(100% / 12 * 0)!important;
-  width: calc(100% / 12 * 8);
-  height: calc(100% / 12 * 4);
-}
-.articles.layout3 li:nth-child(4) {
-  left: calc(100% / 12 * 3)!important;
-  top: calc(100% / 12 * 7)!important;
-  width: calc(100% / 12 * 9);
-  height: calc(100% / 12 * 5);
-}
-.articles.layout3 li:nth-child(5) {
-  left: calc(100% / 12 * 3)!important;
-  top: calc(100% / 12 * 4)!important;
-  width: calc(100% / 12 * 5);
-  height: calc(100% / 12 * 3);
-}
-.articles.layout3 li:nth-child(6) {
-  left: calc(100% / 7 * 0)!important;
-  top: calc(100% / 7 * 0)!important;
-  width: calc(100% / 7 * 7);
-  height: calc(100% / 8 * 1);
-  display: none;
-}
 .dropdown {
   z-index: 1001;
 }
