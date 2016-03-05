@@ -17,15 +17,14 @@
       title: {
         text: "",
         size: 22,
-        font: "Meiryo",
-        reverse: "normal"
+        reverse: false
       },
       content: {
         text: "",
         size: 18
       },
-      image: {
-        src: ""
+      design: {
+        frame: false
       },
       rules: [
         "、", "。", "）", "～"
@@ -42,54 +41,20 @@
     Box.width(frame.width)
     Box.height(frame.height)
 
-    var title = setting.title.text.replace(/([0-9 ０-９]{1,2})/g, function($) {
-      nums = $.replace(/[Ａ-Ｚａ-ｚ０-９]/, function(s) {
-        return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-      });
-      return "<span style='-ms-text-combine-horizontal:all;text-combine-upright:all;'>"+nums+"</span>";
-    });
-
     // タイトル
     var title = $("<h2></h2>", {
       width: setting.title.size,
       css: {
         "position": "absolute",
         "top": "0",
-        "font-family": setting.title.font,
         "margin": "0",
-        "overflow": "hidden",
-        "font-size": setting.title.size+"px",
+        "font-size": setting.title.size,
       },
-      html: title
+      html: setting.title.text
     });
-    var offset = setting.rows[0].width - setting.title.size;
+    var offset = setting.rows[0].width - setting.title.size
     setting.position.align == "left" ? title.css({"left": offset+"px"}) : title.css({"right": "0"})
-    title.css('padding-right', '1px');
-    title.css('padding-right', '1px');    
-    if(setting.title.reverse == "black") {
-      title.css("color", "white");
-      title.css("background", "rgb(54,57,78)");
-    } else if(setting.title.reverse == "gray") {
-      title.css("background", "#9E9E9E");
-    }
     Box.append(title)
-
-    // 画像
-    if(setting.image.src != "") {
-      var image = $("<img>", {
-        height: setting.rows[0].height,
-        width: "auto",
-        css: {
-          "position": "absolute",
-          "top": "0",
-          "left": 0,
-          "margin": "0",
-        },
-        src: setting.image.src
-      })
-      Box.append(image)
-      setting.rows[0].width -= 210;
-    }
 
     // 段落
     var top = 0, pos = 0, width = setting.rows[0].width;
@@ -107,17 +72,6 @@
       }
       count.total -= prohibit
 
-      var str = setting.content.text.substr(pos, count.total)
-
-      // 半角数字を縦書きに
-      var body = str.replace(/([0-9 ０-９]{1,2})/g, function($) {
-        nums = $.replace(/[Ａ-Ｚａ-ｚ０-９]/, function(s) {
-          return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-        });
-        return "<span style='-ms-text-combine-horizontal:all;text-combine-upright:all;'>"+nums+"</span>";
-      });
-      //if(i == setting.rows.length-1) { body = body.match(/(.+。)/)[0]; }
-
       var row = $("<p></p>", {
         width: val.width == width ? val.width - setting.title.size : val.width,
         height: val.height-1,
@@ -126,9 +80,9 @@
           "position": "absolute",
           "top": top+"px",
           "font-size": setting.content.size+"px",
-          "border-bottom": "1px solid #aaa",
+          "border-bottom": "2px solid #aaa",
         },
-        html: body
+        html: setting.content.text.substr(pos, count.total)
       });
       top += val.height
       pos += count.total
@@ -146,7 +100,9 @@
       "top": setting.position.y,
       "-webkit-writing-mode": "vertical-rl",
       "line-height": "1.5em",
+      "border": setting.design.frame ? "1px solid black" : "none"
     })
+    console.log(setting.design.frame)
 
     // メソッドチェーン対応
     return(this);
