@@ -14,7 +14,6 @@ body {
   position: relative;
   width: 100%;
   background-color: #fff;
-  background: rgba(187, 187, 187, .8);
 }
 .articles_area.by_16_9::before {
   content: "";
@@ -185,5 +184,3 @@ body {
   height: calc(100% / 8 * 1);
   display: none;
 }
-
-
