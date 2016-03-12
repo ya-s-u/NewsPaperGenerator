@@ -42,7 +42,14 @@
     Box.height(frame.height)
 
     // タイトル
-    var num = Math.floor(frame.height/setting.title.size)
+    var wi = setting.rows[0].width
+    var xxx = 0;
+    $.each(setting.rows, function(i, val) {
+      if(val.width == wi) {
+        xxx++
+      }
+    })
+    var num = Math.floor(setting.rows[0].height*xxx/setting.title.size)
     var title = $("<h2></h2>", {
       width: setting.title.size,
       css: {
