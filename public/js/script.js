@@ -812,8 +812,8 @@ $(function(){
     openModal();
     selectedIndex = $('.editor .articles li').index(this);
     var articleData = getDataFromArticle(selectedIndex);
-    $("#article_title").val(articleData.title);
-    $("#article_body").val(articleData.body);
+    $("#article_title").val(articles[selectedIndex].title);
+    $("#article_body").val(articles[selectedIndex].content);
     $("#confirmation_image").attr("src", articleData.image);
     if(articleData.image == "") {
       $("#confirmation_image").hide();
@@ -840,6 +840,9 @@ $(function(){
       var hasImage = false;
     }
     // insertArticle(selectedIndex, title, title_size, body, body_size, image, selected_font, background, hasImage);
+    articles[selectedIndex].title = title
+    articles[selectedIndex].content = body
+    articles[selectedIndex].image = image
     reloadArticles();
     closeModal();
   });
