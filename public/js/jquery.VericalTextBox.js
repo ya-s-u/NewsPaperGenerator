@@ -82,7 +82,7 @@
           "position": "absolute",
           "top": top+"px",
           "font-size": setting.content.size+"px",
-          "border-bottom": "2px solid #aaa",
+          "border-bottom": "1px solid #ccc",
         },
         html: setting.content.text.substr(pos, count.total)
       });
@@ -102,7 +102,7 @@
       "top": setting.position.y,
       "-webkit-writing-mode": "vertical-rl",
       "line-height": "1.5em",
-      "border": setting.design.frame ? "1px solid black" : "none"
+      "border": setting.design.frame ? "2px solid black" : "none"
     })
     // console.log(setting.design.frame)
 
