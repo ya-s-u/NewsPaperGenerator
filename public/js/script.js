@@ -795,6 +795,8 @@ $(function(){
     $('.dropdown-menu.background li.selected').removeClass('selected');
     $(this).addClass('selected');
     background = $(this).attr('data-bg');
+    layouts[select.screen][select.layout][0]["title"]["reverse"] = true
+    // reloadArticles()
   });
 
   // 再挿入
@@ -837,7 +839,8 @@ $(function(){
     } else {
       var hasImage = false;
     }
-    insertArticle(selectedIndex, title, title_size, body, body_size, image, selected_font, background, hasImage);
+    // insertArticle(selectedIndex, title, title_size, body, body_size, image, selected_font, background, hasImage);
+    reloadArticles();
     closeModal();
   });
 

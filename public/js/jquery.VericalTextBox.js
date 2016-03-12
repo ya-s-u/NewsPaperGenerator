@@ -49,6 +49,8 @@
         "top": "0",
         "margin": "0",
         "font-size": setting.title.size,
+        "color": setting.title.reverse ? "white" : "black",
+        "background": setting.title.reverse ? "black" : "white",
       },
       html: setting.title.text
     });
