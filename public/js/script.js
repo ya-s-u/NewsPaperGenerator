@@ -752,7 +752,7 @@ $(function(){
     var id = $(this).attr("data-id");
     var lastLayoutsClass = "layout" + lastLayouts;
     var nowLayoutsClass = "layout" + id;
-    console.log(lastLayoutsClass, nowLayoutsClass);
+    // console.log(lastLayoutsClass, nowLayoutsClass);
     $(".articles").removeClass(lastLayoutsClass);
     $(".articles").addClass(nowLayoutsClass);
     lastLayouts = id;
@@ -761,7 +761,6 @@ $(function(){
     select.layout = Number(id)+3
     // reload();
     reloadArticles()
-
   });
 
   $(".dropdown").click(function() {
@@ -924,14 +923,14 @@ $(function(){
   // 記事を追加を押したら一旦フォームに
   $("#search_article").click(function(){
     var url = "http://localhost:8080/content?url=" + $('#article_url').val();
-    console.log(url);
+    // console.log(url);
     nowLoading();
     $.ajax({
       url: url,
       type: 'GET',
     })
     .done(function(data) {
-      console.log(data);
+      // console.log(data);
       $("#article_title").val(data.title);
       $("#article_body").val(data.content);
       $("#confirmation_image").attr("src", data.pic);
@@ -940,7 +939,7 @@ $(function(){
       $('#article_url').val('');
     })
     .fail(function(data) {
-      console.log(data);
+      // console.log(data);
       alert("URLが不正です");
       stopLoading();
     });
@@ -961,14 +960,20 @@ $(function(){
       var top = event.pageY;
       var left = event.pageX;
       $(".editor .articles li").each(function(i, elem) {
+        if(i >= select.layout) {
+          return
+        }
         var l = $(elem).offset().left;
         var t = $(elem).offset().top;
         var w = $(elem).width();
         var h = $(elem).height();
         // 当たり判定
         if( (l < left) && (left < l+w) && (t < top) && (top < t+h) ) {
-          console.log(draggingIndex, i);
+          // console.log(draggingIndex, i);
           if(i != draggingIndex) {
+            // console.log("====")
+            // console.log(i)
+            // console.log(draggingIndex)
             swapArtcile(i, draggingIndex);
           }
           return;
@@ -979,18 +984,21 @@ $(function(){
 
   // index1とindex2の記事を入れ替える
   function swapArtcile(index1, index2) {
-    var article1Data = getDataFromArticle(index1);
-    var article2Data = getDataFromArticle(index2);
-
-    insertArticle(index1, article2Data.title, article2Data.title_size, article2Data.body, article2Data.body_size, article2Data.image, article2Data.font, article2Data.reverse, article2Data.hasImage);
-    insertArticle(index2, article1Data.title, article1Data.title_size, article1Data.body, article1Data.body_size, article1Data.image, article1Data.font, article1Data.reverse, article1Data.hasImage);
-    reload();
+    // var article1Data = getDataFromArticle(index1);
+    // var article2Data = getDataFromArticle(index2);
+    var tmp = articles[index1]
+    articles[index1] = articles[index2]
+    articles[index2] = tmp
+    // insertArticle(index1, article2Data.title, article2Data.title_size, article2Data.body, article2Data.body_size, article2Data.image, article2Data.font, article2Data.reverse, article2Data.hasImage);
+    // insertArticle(index2, article1Data.title, article1Data.title_size, article1Data.body, article1Data.body_size, article1Data.image, article1Data.font, article1Data.reverse, article1Data.hasImage);
+    // reload();
+    reloadArticles()
   }
 
   // htmlとしてアウトプット
   $("#html_output").click(function() {
     var html = $(".wrapper").html();
-    console.log(html);
+    // console.log(html);
     var url = $(this).attr("href") + "?width=" + $(".wrapper").width() + "&height=" + $(".wrapper").height() +"&html=" + html;
     window.open(url, "_blank");
     return false;
@@ -1038,8 +1046,8 @@ $(function(){
       height: $("#articles").height()-40,
     }
     $("#articles li").empty()
-    console.log(size)
-      console.log(layouts[select.screen][select.layout])
+    // console.log(size)
+      // console.log(layouts[select.screen][select.layout])
     layouts[select.screen][select.layout].forEach(function(layout, i) {
        createArticle(articles[i], layout, i)
     });

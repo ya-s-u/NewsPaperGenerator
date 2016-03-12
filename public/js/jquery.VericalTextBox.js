@@ -102,7 +102,7 @@
       "line-height": "1.5em",
       "border": setting.design.frame ? "1px solid black" : "none"
     })
-    console.log(setting.design.frame)
+    // console.log(setting.design.frame)
 
     // メソッドチェーン対応
     return(this);
