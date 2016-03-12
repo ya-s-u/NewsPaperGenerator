@@ -42,6 +42,7 @@
     Box.height(frame.height)
 
     // タイトル
+    var num = Math.floor(frame.height/setting.title.size)
     var title = $("<h2></h2>", {
       width: setting.title.size,
       css: {
@@ -52,7 +53,7 @@
         "color": setting.title.reverse ? "white" : "black",
         "background": setting.title.reverse ? "black" : "white",
       },
-      html: setting.title.text
+      html: setting.title.text.substring(0, num)
     });
     var offset = setting.rows[0].width - setting.title.size
     setting.position.align == "left" ? title.css({"left": offset+"px"}) : title.css({"right": "0"})
