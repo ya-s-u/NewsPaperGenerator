@@ -49,7 +49,8 @@
         xxx++
       }
     })
-    var num = Math.floor(setting.rows[0].height*xxx/setting.title.size)
+    var aaa = setting.position.align == "right" ? setting.rows.length : xxx
+    var num = Math.floor(setting.rows[0].height*aaa/setting.title.size)
     var title = $("<h2></h2>", {
       width: setting.title.size,
       css: {
